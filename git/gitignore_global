@@ -1,0 +1,8 @@
+*~
+.DS_Store
+patch.diff
+.idea/dataSources
+project/static/admin/.sass-cache
+tags
+tags.lock
+tags.temp
