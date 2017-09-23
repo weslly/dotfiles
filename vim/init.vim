@@ -13,13 +13,12 @@ Plug 'tpope/vim-vinegar'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ap/vim-buftabline'
+Plug 'itchyny/lightline.vim'
+Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-Plug 'lepture/vim-jinja'
+Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'jinja.html']}
 Plug 'editorconfig/editorconfig-vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -28,7 +27,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
-Plug 'rizzatti/dash.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
@@ -55,7 +53,6 @@ colorscheme gruvbox
 let g:UltiSnipsExpandTrigger='<tab>'
 
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
-" let g:netrw_browse_split = 4
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
 
