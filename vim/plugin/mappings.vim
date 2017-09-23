@@ -3,10 +3,7 @@ let g:mapleader= ' '
 " Repeat macro @q
 nnoremap Q @q
 
-" nmap <F8> :TagbarToggle<CR>
-
 nnoremap <leader>] :call functions#NumberToggle()<cr>
-
 
 "Clear search highlighting when esc is pressed
 nnoremap <esc> :noh<return><esc>
@@ -25,11 +22,9 @@ map <leader>c <c-_><c-_>
 
 noremap <leader>n :%s//
 
-
 " better buffer navigation
 nmap <F3> :bnext<CR>
 nmap <F2> :bprev<CR>
-nmap <F4> :Sayonara!<CR>
 nmap <leader>o :Buffers<CR>
 
 imap jj <esc>

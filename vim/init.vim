@@ -6,21 +6,6 @@ if has('nvim')
   set termguicolors
 endif
 
-" Other files {{{
-"
-" plugin/settings.vim     " Settings
-" plugin/mappings.vim     " Key Mappings
-" plugin/autocmd.vim      " Auto Commands
-" plugin/commands.vim     " Commands
-" plugin/autosession.vim  " Auto-Session Plugin
-" after/plugin            " Plugin Settings
-" autoload/functions.vim  " Functions
-" ftplugin                " File-type plugins
-" UltiSnips               " Snippets
-" filetype.vim            " File-type settings
-"
-" }}}
-
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
@@ -33,8 +18,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 Plug 'lepture/vim-jinja'
-Plug 'ryanoasis/vim-devicons'
-Plug 'mhinz/vim-sayonara'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -47,7 +30,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'rizzatti/dash.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
 
 " Python
@@ -56,11 +39,6 @@ Plug 'zchee/deoplete-jedi', {'for': ['python']}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
-
-" PHP & Wordpress
-" Plug 'shawncplus/phpcomplete.vim', {'for': [ 'php','html','php.wordpress' ]}
-" Plug 'captbaritone/better-indent-support-for-php-with-html'
-" Plug 'dsawardekar/wordpress.vim'
 
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'htmldjango', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
@@ -98,3 +76,17 @@ if filereadable(s:vimrc_project)
 endif
 
 
+" Other files {{{
+"
+" plugin/settings.vim     " Settings
+" plugin/mappings.vim     " Key Mappings
+" plugin/autocmd.vim      " Auto Commands
+" plugin/commands.vim     " Commands
+" plugin/autosession.vim  " Auto-Session Plugin
+" after/plugin            " Plugin Settings
+" autoload/functions.vim  " Functions
+" ftplugin                " File-type plugins
+" UltiSnips               " Snippets
+" filetype.vim            " File-type settings
+"
+" }}}
