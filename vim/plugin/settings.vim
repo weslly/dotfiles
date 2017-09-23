@@ -12,13 +12,16 @@ set softtabstop=4
 set expandtab
 set shiftround
 
-set cursorline
+" set cursorline
 set ignorecase
 set smartcase
 set foldenable
 set mouse=a
 set splitbelow
 set splitright
+
+set noswapfile
+set nobackup
 
 set virtualedit=block
 

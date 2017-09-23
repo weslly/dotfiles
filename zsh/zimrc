@@ -39,7 +39,7 @@ zmodules=(
 #
 
 # Set your desired prompt here
-zprompt_theme='liquidprompt'
+# zprompt_theme='pure'
 
 #
 # Completion
