@@ -6,7 +6,10 @@
 
 - link:
     ~/.tmux.conf: tmux.conf
-    ~/.zshrc: zshrc
+    ~/.zshrc: zsh/zshrc
+    ~/.zprofile: zsh/zprofile
+    ~/.zlogin: zsh/zlogin
+    ~/.zimrc: zsh/zimrc
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
     ~/.vim: vim

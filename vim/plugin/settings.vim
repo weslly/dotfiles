@@ -22,13 +22,11 @@ set splitright
 
 set virtualedit=block
 
-if !exists('g:actualvim')
-  set scrolljump=5
-  set timeoutlen=500
-  " set lazyredraw
-  set showmatch
-  set number
-endif
+set scrolljump=5
+set timeoutlen=500
+" set lazyredraw
+set showmatch
+set number
 
 if exists('&inccommand')
   set inccommand=split

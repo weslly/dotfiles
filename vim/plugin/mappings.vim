@@ -23,7 +23,7 @@ nmap <leader>ev :tabedit $MYVIMRC<cr>
 "Faster shortcut for commenting. Requires T-Comment plugin
 map <leader>c <c-_><c-_>
 
-noremap <leader>n :Lex<cr>
+noremap <leader>n :%s//
 
 
 " better buffer navigation
