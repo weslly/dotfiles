@@ -13,9 +13,6 @@ Plug 'tpope/vim-vinegar'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'ap/vim-buftabline'
-Plug 'itchyny/lightline.vim'
-Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'jinja.html']}
 Plug 'editorconfig/editorconfig-vim'
@@ -28,8 +25,9 @@ Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
+Plug 'Konfekt/FastFold'
 
 " Python
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -87,3 +85,4 @@ endif
 " filetype.vim            " File-type settings
 "
 " }}}
+

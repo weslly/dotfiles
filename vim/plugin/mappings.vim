@@ -15,7 +15,7 @@ nnoremap <leader>ft Vatzf
 nnoremap <leader>v <C-w>v<C-w>l
 
 "Shortcut for editing  vimrc file in a new tab
-nmap <leader>ev :tabedit $MYVIMRC<cr>
+nmap <leader>ev :e $MYVIMRC<cr>
 
 "Faster shortcut for commenting. Requires T-Comment plugin
 map <leader>c <c-_><c-_>
