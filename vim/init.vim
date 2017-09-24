@@ -8,14 +8,12 @@ endif
 
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
-
-Plug 'tpope/vim-vinegar'
-Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'jinja.html']}
 Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
@@ -25,26 +23,26 @@ Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'w0rp/ale'
 Plug 'jiangmiao/auto-pairs'
-Plug 'Konfekt/FastFold'
+Plug 'Yggdroot/indentLine'
+Plug 'vimwiki/vimwiki'
 
 " Python
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
-Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'htmldjango', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'morhetz/gruvbox'
+
+"
+" Plug 'w0rp/ale'
 call plug#end()
 " }}}
 
-let g:gruvbox_italic=1
 set background=dark
 colorscheme gruvbox
 
@@ -53,6 +51,8 @@ let g:UltiSnipsExpandTrigger='<tab>'
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
+
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 
 if has('nvim')
   call deoplete#enable()
@@ -70,7 +70,6 @@ if filereadable(s:vimrc_project)
   execute 'source ' . s:vimrc_project
 endif
 
-
 " Other files {{{
 "
 " plugin/settings.vim     " Settings
@@ -85,4 +84,3 @@ endif
 " filetype.vim            " File-type settings
 "
 " }}}
-
