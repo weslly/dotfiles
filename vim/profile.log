@@ -1,0 +1,999 @@
+SCRIPT  /Users/weslly/dotfiles/vim/plugged/ultisnips/autoload/UltiSnips.vim
+Sourced 1 time
+Total time:   0.200388
+ Self time:   0.000347
+
+count  total (s)   self (s)
+                            if exists("b:did_autoload_ultisnips") || !exists("g:_uspy")
+                                finish
+                            endif
+    1              0.000005 let b:did_autoload_ultisnips = 1
+                            
+                            " Also import vim as we expect it to be imported in many places.
+    1   0.172341   0.000028 exec g:_uspy "import vim"
+    1   0.027793   0.000064 exec g:_uspy "from UltiSnips import UltiSnips_Manager"
+                            
+    1              0.000011 function! s:compensate_for_pum()
+                                """ The CursorMovedI event is not triggered while the popup-menu is visible,
+                                """ and it's by this event that UltiSnips updates its vim-state. The fix is
+                                """ to explicitly check for the presence of the popup menu, and update
+                                """ the vim-state accordingly.
+                                if pumvisible()
+                                    exec g:_uspy "UltiSnips_Manager._cursor_moved()"
+                                endif
+                            endfunction
+                            
+    1              0.000005 function! UltiSnips#Edit(bang, ...)
+                                if a:0 == 1 && a:1 != ''
+                                    let type = a:1
+                                else
+                                    let type = ""
+                                endif
+                                exec g:_uspy "vim.command(\"let file = '%s'\" % UltiSnips_Manager._file_to_edit(vim.eval(\"type\"), vim.eval('a:bang')))"
+                            
+                                if !len(file)
+                                   return
+                                endif
+                            
+                                let mode = 'e'
+                                if exists('g:UltiSnipsEditSplit')
+                                    if g:UltiSnipsEditSplit == 'vertical'
+                                        let mode = 'vs'
+                                    elseif g:UltiSnipsEditSplit == 'horizontal'
+                                        let mode = 'sp'
+                                    elseif g:UltiSnipsEditSplit == 'context'
+                                        let mode = 'vs'
+                                        if winwidth(0) <= 2 * (&tw ? &tw : 80)
+                                            let mode = 'sp'
+                                        endif
+                                    endif
+                                endif
+                                exe ':'.mode.' '.escape(file, ' ')
+                            endfunction
+                            
+    1              0.000004 function! UltiSnips#AddFiletypes(filetypes)
+                                exec g:_uspy "UltiSnips_Manager.add_buffer_filetypes('" . a:filetypes . "')"
+                                return ""
+                            endfunction
+                            
+    1              0.000007 function! UltiSnips#FileTypeComplete(arglead, cmdline, cursorpos)
+                                let ret = {}
+                                let items = map(
+                                \   split(globpath(&runtimepath, 'syntax/*.vim'), '\n'),
+                                \   'fnamemodify(v:val, ":t:r")'
+                                \ )
+                                call insert(items, 'all')
+                                for item in items
+                                    if !has_key(ret, item) && item =~ '^'.a:arglead
+                                        let ret[item] = 1
+                                    endif
+                                endfor
+                            
+                                return sort(keys(ret))
+                            endfunction
+                            
+    1              0.000003 function! UltiSnips#ExpandSnippet()
+                                exec g:_uspy "UltiSnips_Manager.expand()"
+                                return ""
+                            endfunction
+                            
+    1              0.000003 function! UltiSnips#ExpandSnippetOrJump()
+                                call s:compensate_for_pum()
+                                exec g:_uspy "UltiSnips_Manager.expand_or_jump()"
+                                return ""
+                            endfunction
+                            
+    1              0.000002 function! UltiSnips#ListSnippets()
+                                exec g:_uspy "UltiSnips_Manager.list_snippets()"
+                                return ""
+                            endfunction
+                            
+    1              0.000003 function! UltiSnips#SnippetsInCurrentScope(...)
+                                let g:current_ulti_dict = {}
+                                let all = get(a:, 1, 0)
+                                if all
+                                  let g:current_ulti_dict_info = {}
+                                endif
+                                exec g:_uspy "UltiSnips_Manager.snippets_in_current_scope(" . all . ")"
+                                return g:current_ulti_dict
+                            endfunction
+                            
+    1              0.000003 function! UltiSnips#SaveLastVisualSelection() range
+                                exec g:_uspy "UltiSnips_Manager._save_last_visual_selection()"
+                                return ""
+                            endfunction
+                            
+    1              0.000002 function! UltiSnips#JumpBackwards()
+                                call s:compensate_for_pum()
+                                exec g:_uspy "UltiSnips_Manager.jump_backwards()"
+                                return ""
+                            endfunction
+                            
+    1              0.000002 function! UltiSnips#JumpForwards()
+                                call s:compensate_for_pum()
+                                exec g:_uspy "UltiSnips_Manager.jump_forwards()"
+                                return ""
+                            endfunction
+                            
+    1              0.000004 function! UltiSnips#AddSnippetWithPriority(trigger, value, description, options, filetype, priority)
+                                exec g:_uspy "trigger = vim.eval(\"a:trigger\")"
+                                exec g:_uspy "value = vim.eval(\"a:value\")"
+                                exec g:_uspy "description = vim.eval(\"a:description\")"
+                                exec g:_uspy "options = vim.eval(\"a:options\")"
+                                exec g:_uspy "filetype = vim.eval(\"a:filetype\")"
+                                exec g:_uspy "priority = vim.eval(\"a:priority\")"
+                                exec g:_uspy "UltiSnips_Manager.add_snippet(trigger, value, description, options, filetype, priority)"
+                                return ""
+                            endfunction
+                            
+    1              0.000003 function! UltiSnips#Anon(value, ...)
+                                " Takes the same arguments as SnippetManager.expand_anon:
+                                " (value, trigger="", description="", options="")
+                                exec g:_uspy "args = vim.eval(\"a:000\")"
+                                exec g:_uspy "value = vim.eval(\"a:value\")"
+                                exec g:_uspy "UltiSnips_Manager.expand_anon(value, *args)"
+                                return ""
+                            endfunction
+                            
+                            
+    1              0.000003 function! UltiSnips#CursorMoved()
+                                exec g:_uspy "UltiSnips_Manager._cursor_moved()"
+                            endf
+                            
+    1              0.000005 function! UltiSnips#LeavingBuffer()
+                                exec g:_uspy "UltiSnips_Manager._leaving_buffer()"
+                            endf
+                            
+    1              0.000003 function! UltiSnips#LeavingInsertMode()
+                                exec g:_uspy "UltiSnips_Manager._leaving_insert_mode()"
+                            endfunction
+                            
+    1              0.000005 function! UltiSnips#TrackChange()
+                                exec g:_uspy "UltiSnips_Manager._track_change()"
+                            endfunction
+                            " }}}
+
+FUNCTION  deoplete#util#rpcnotify()
+Called 3 times
+Total time:   0.000309
+ Self time:   0.000293
+
+count  total (s)   self (s)
+    3   0.000038   0.000023   if deoplete#init#_check_channel()
+                                return ''
+                              endif
+                            
+    3              0.000014   if !exists('s:logged') && !empty(g:deoplete#_logging)
+                                call rpcnotify(g:deoplete#_channel_id, 'deoplete_enable_logging', g:deoplete#_logging.level, g:deoplete#_logging.logfile)
+                                let g:deoplete#_logging = {}
+                                let s:logged = 1
+                              endif
+                            
+    3              0.000209   call call('rpcnotify', [g:deoplete#_channel_id] + a:000)
+    3              0.000007   return ''
+
+FUNCTION  <SNR>26_completion_begin()
+Called 3 times
+Total time:   0.008804
+ Self time:   0.000332
+
+count  total (s)   self (s)
+    3   0.007362   0.000060   let context = deoplete#init#_context(a:event, [])
+    3   0.000820   0.000039   if s:is_skip(a:event, context)
+                                call deoplete#mapping#_restore_completeopt()
+                                let g:deoplete#_context.candidates = []
+                                return
+                              endif
+                            
+    3              0.000014   if exists('s:prev_completion') && s:prev_completion.event !=# 'Manual'
+                                " Call omni completion
+    4              0.000010     for filetype in context.filetypes
+    4   0.000112   0.000031       for pattern in deoplete#util#convert2list( deoplete#util#get_buffer_config(filetype, 'b:deoplete_omni_patterns', 'g:deoplete#omni_patterns', 'g:deoplete#_omni_patterns'))
+    2              0.000008         if pattern !=# '' && &l:omnifunc !=# '' && context.input =~# '\%('.pattern.'\)$'
+                                      let g:deoplete#_context.candidates = []
+                                      call deoplete#mapping#_set_completeopt()
+                                      call feedkeys("\<C-x>\<C-o>", 'in')
+                                      return
+                                    endif
+    2              0.000002       endfor
+    2              0.000002     endfor
+    2              0.000002   endif
+                            
+    3   0.000338   0.000029   call deoplete#util#rpcnotify( 'deoplete_auto_completion_begin', context)
+
+FUNCTION  remote#host#Require()
+Called 1 time
+Total time:   0.171713
+ Self time:   0.000066
+
+count  total (s)   self (s)
+    1              0.000004   if !has_key(s:hosts, a:name)
+                                throw 'No host named "'.a:name.'" is registered'
+                              endif
+    1              0.000003   let host = s:hosts[a:name]
+    1              0.000002   if !host.channel && !host.initialized
+    1              0.000007     let host_info = { 'name': a:name, 'orig_name': get(host, 'orig_name', a:name) }
+    1   0.171681   0.000034     let host.channel = call(host.factory, [host_info])
+    1              0.000004     let host.initialized = 1
+    1              0.000001   endif
+    1              0.000004   return host.channel
+
+FUNCTION  GetVimIndent()
+Called 1 time
+Total time:   0.000377
+ Self time:   0.000074
+
+count  total (s)   self (s)
+    1              0.000014   let ignorecase_save = &ignorecase
+    1              0.000003   try
+    1              0.000012     let &ignorecase = 0
+    1   0.000325   0.000022     return GetVimIndentIntern()
+                              finally
+    1              0.000012     let &ignorecase = ignorecase_save
+    1              0.000003   endtry
+
+FUNCTION  <SNR>26_on_insert_leave()
+Called 2 times
+Total time:   0.000098
+ Self time:   0.000052
+
+count  total (s)   self (s)
+    2   0.000074   0.000028   call deoplete#mapping#_restore_completeopt()
+    2              0.000020   let g:deoplete#_context = {}
+
+FUNCTION  <SNR>26_is_skip_text()
+Called 3 times
+Total time:   0.000642
+ Self time:   0.000286
+
+count  total (s)   self (s)
+    3              0.000037   let context = g:deoplete#_context
+    3   0.000356   0.000039   let input = deoplete#util#get_input(a:event)
+                            
+    3              0.000018   if has_key(context, 'input') && a:event !=# 'Manual' && a:event !=# 'Async' && input ==# context.input
+                                return 1
+                              endif
+                            
+    3              0.000019   let displaywidth = strdisplaywidth(input) + 1
+    3              0.000043   if &l:formatoptions =~# '[tca]' && &l:textwidth > 0     && displaywidth >= &l:textwidth
+                                if &l:formatoptions =~# '[ta]' || !empty(filter(deoplete#util#get_syn_names(),                  "v:val ==# 'Comment'"))
+                                  return 1
+                                endif
+                              endif
+                            
+    3   0.000080   0.000040   let skip_chars = deoplete#util#get_simple_buffer_config(   'b:deoplete_skip_chars', 'g:deoplete#skip_chars')
+                            
+    3              0.000033   return (!pumvisible() && virtcol('.') != displaywidth) || (a:event !=# 'Manual' && input !=# ''     && index(skip_chars, input[-1:]) >= 0)
+
+FUNCTION  <SNR>26_completion_timer_stop()
+Called 3 times
+Total time:   0.000066
+ Self time:   0.000066
+
+count  total (s)   self (s)
+    3              0.000018   if !exists('s:completion_timer')
+                                return
+                              endif
+                            
+    3              0.000017   call timer_stop(s:completion_timer)
+    3              0.000011   unlet s:completion_timer
+
+FUNCTION  deoplete#util#get_buffer_config()
+Called 8 times
+Total time:   0.000335
+ Self time:   0.000335
+
+count  total (s)   self (s)
+    8              0.000044   let default_val = get(a:000, 0, '')
+                            
+    8              0.000036   if exists(a:buffer_var)
+                                return {a:buffer_var}
+                              endif
+                            
+    8              0.000106   let filetype = !has_key({a:user_var}, a:filetype) && !has_key(eval(a:default_var), a:filetype) ? '_' : a:filetype
+                            
+    8              0.000090   return get({a:user_var}, filetype,   get(eval(a:default_var), filetype, default_val))
+
+FUNCTION  deoplete#handler#_async_timer_stop()
+Called 3 times
+Total time:   0.000094
+ Self time:   0.000094
+
+count  total (s)   self (s)
+    3              0.000048   if exists('s:async_timer')
+                                call timer_stop(s:async_timer.id)
+                                unlet s:async_timer
+                              endif
+
+FUNCTION  deoplete#util#get_simple_buffer_config()
+Called 6 times
+Total time:   0.000065
+ Self time:   0.000065
+
+count  total (s)   self (s)
+    6              0.000061   return exists(a:buffer_var) ? {a:buffer_var} : {a:user_var}
+
+FUNCTION  deoplete#util#get_context_filetype()
+Called 3 times
+Total time:   0.000657
+ Self time:   0.000469
+
+count  total (s)   self (s)
+    3              0.000027   if !exists('s:context_filetype')
+                                let s:context_filetype = {}
+                            
+                                " Force context_filetype call.
+                                try
+                                  call context_filetype#get_filetype()
+                                catch
+                                  " Ignore error
+                                endtry
+                              endif
+                            
+    3              0.000155   if empty(s:context_filetype) || s:context_filetype.prev_filetype !=# &filetype || s:context_filetype.line != line('.') || s:context_filetype.bufnr != bufnr('.') || (a:input =~# '\W$' &&     substitute(a:input, '\s\zs\s\+$', '', '') !=#     substitute(s:context_filetype.input, '\s\zs\s\+$', '', '')) || (a:input =~# '\w$' &&     substitute(a:input, '\w\+$', '', '') !=#     substitute(s:context_filetype.input, '\w\+$', '', '')) || a:event ==# 'InsertEnter'
+                            
+    2              0.000009     let s:context_filetype.line = line('.')
+    2              0.000019     let s:context_filetype.bufnr = bufnr('.')
+    2              0.000007     let s:context_filetype.input = a:input
+    2              0.000007     let s:context_filetype.prev_filetype = &filetype
+    2              0.000020     let s:context_filetype.filetype = (exists('*context_filetype#get_filetype') ?   context_filetype#get_filetype() :   (&filetype ==# '' ? 'nothing' : &filetype))
+    2   0.000249   0.000061     let s:context_filetype.filetypes = exists('*context_filetype#get_filetypes') ?   context_filetype#get_filetypes() :   &filetype ==# '' ? ['nothing'] :                     deoplete#util#uniq([&filetype]                          + split(&filetype, '\.'))
+    2              0.000016     let s:context_filetype.same_filetypes = exists('*context_filetype#get_same_filetypes') ?   context_filetype#get_same_filetypes() : []
+    2              0.000003   endif
+    3              0.000017   return [ s:context_filetype.filetype,  s:context_filetype.filetypes, s:context_filetype.same_filetypes]
+
+FUNCTION  remote#host#PluginsForHost()
+Called 1 time
+Total time:   0.000011
+ Self time:   0.000011
+
+count  total (s)   self (s)
+    1              0.000004   if !has_key(s:plugins_for_host, a:host)
+                                let s:plugins_for_host[a:host] = []
+                              end
+    1              0.000003   return s:plugins_for_host[a:host]
+
+FUNCTION  UltiSnips#TrackChange()
+Called 1 time
+Total time:   0.052054
+ Self time:   0.052054
+
+count  total (s)   self (s)
+    1              0.052053     exec g:_uspy "UltiSnips_Manager._track_change()"
+
+FUNCTION  <SNR>55_Highlight_Matching_Pair()
+Called 57 times
+Total time:   0.010905
+ Self time:   0.010905
+
+count  total (s)   self (s)
+                              " Remove any previous match.
+   57              0.000733   if exists('w:paren_hl_on') && w:paren_hl_on
+                                silent! call matchdelete(3)
+                                let w:paren_hl_on = 0
+                              endif
+                            
+                              " Avoid that we remove the popup menu.
+                              " Return when there are no colors (looks like the cursor jumps).
+   57              0.000495   if pumvisible() || (&t_Co < 8 && !has("gui_running"))
+                                return
+                              endif
+                            
+                              " Get the character under the cursor and check if it's in 'matchpairs'.
+   57              0.000377   let c_lnum = line('.')
+   57              0.000270   let c_col = col('.')
+   57              0.000171   let before = 0
+                            
+   57              0.000299   let text = getline(c_lnum)
+   57              0.001715   let matches = matchlist(text, '\(.\)\=\%'.c_col.'c\(.\=\)')
+   57              0.000306   if empty(matches)
+                                let [c_before, c] = ['', '']
+                              else
+   57              0.000492     let [c_before, c] = matches[1:2]
+   57              0.000104   endif
+   57              0.001713   let plist = split(&matchpairs, '.\zs[:,]')
+   57              0.000436   let i = index(plist, c)
+   57              0.000189   if i < 0
+                                " not found, in Insert mode try character before the cursor
+   57              0.000510     if c_col > 1 && (mode() == 'i' || mode() == 'R')
+    2              0.000008       let before = strlen(c_before)
+    2              0.000004       let c = c_before
+    2              0.000006       let i = index(plist, c)
+    2              0.000002     endif
+   57              0.000155     if i < 0
+                                  " not found, nothing to do
+   57              0.000151       return
+                                endif
+                              endif
+                            
+                              " Figure out the arguments for searchpairpos().
+                              if i % 2 == 0
+                                let s_flags = 'nW'
+                                let c2 = plist[i + 1]
+                              else
+                                let s_flags = 'nbW'
+                                let c2 = c
+                                let c = plist[i - 1]
+                              endif
+                              if c == '['
+                                let c = '\['
+                                let c2 = '\]'
+                              endif
+                            
+                              " Find the match.  When it was just before the cursor move it there for a
+                              " moment.
+                              if before > 0
+                                let has_getcurpos = exists("*getcurpos")
+                                if has_getcurpos
+                                  " getcurpos() is more efficient but doesn't exist before 7.4.313.
+                                  let save_cursor = getcurpos()
+                                else
+                                  let save_cursor = winsaveview()
+                                endif
+                                call cursor(c_lnum, c_col - before)
+                              endif
+                            
+                              " Build an expression that detects whether the current cursor position is in
+                              " certain syntax types (string, comment, etc.), for use as searchpairpos()'s
+                              " skip argument.
+                              " We match "escape" for special items, such as lispEscapeSpecial.
+                              let s_skip = '!empty(filter(map(synstack(line("."), col(".")), ''synIDattr(v:val, "name")''), ' . '''v:val =~? "string\\|character\\|singlequote\\|escape\\|comment"''))'
+                              " If executing the expression determines that the cursor is currently in
+                              " one of the syntax types, then we want searchpairpos() to find the pair
+                              " within those syntax types (i.e., not skip).  Otherwise, the cursor is
+                              " outside of the syntax types and s_skip should keep its value so we skip any
+                              " matching pair inside the syntax types.
+                              execute 'if' s_skip '| let s_skip = 0 | endif'
+                            
+                              " Limit the search to lines visible in the window.
+                              let stoplinebottom = line('w$')
+                              let stoplinetop = line('w0')
+                              if i % 2 == 0
+                                let stopline = stoplinebottom
+                              else
+                                let stopline = stoplinetop
+                              endif
+                            
+                              " Limit the search time to 300 msec to avoid a hang on very long lines.
+                              " This fails when a timeout is not supported.
+                              if mode() == 'i' || mode() == 'R'
+                                let timeout = exists("b:matchparen_insert_timeout") ? b:matchparen_insert_timeout : g:matchparen_insert_timeout
+                              else
+                                let timeout = exists("b:matchparen_timeout") ? b:matchparen_timeout : g:matchparen_timeout
+                              endif
+                              try
+                                let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline, timeout)
+                              catch /E118/
+                                " Can't use the timeout, restrict the stopline a bit more to avoid taking
+                                " a long time on closed folds and long lines.
+                                " The "viewable" variables give a range in which we can scroll while
+                                " keeping the cursor at the same position.
+                                " adjustedScrolloff accounts for very large numbers of scrolloff.
+                                let adjustedScrolloff = min([&scrolloff, (line('w$') - line('w0')) / 2])
+                                let bottom_viewable = min([line('$'), c_lnum + &lines - adjustedScrolloff - 2])
+                                let top_viewable = max([1, c_lnum-&lines+adjustedScrolloff + 2])
+                                " one of these stoplines will be adjusted below, but the current values are
+                                " minimal boundaries within the current window
+                                if i % 2 == 0
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = min([line2byte("$"), line2byte(".") + col(".") + &smc * 2])
+                            	let stopline = min([bottom_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = min([bottom_viewable, c_lnum + 100])
+                                  endif
+                                  let stoplinebottom = stopline
+                                else
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = max([1, line2byte(".") + col(".") - &smc * 2])
+                            	let stopline = max([top_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = max([top_viewable, c_lnum - 100])
+                                  endif
+                                  let stoplinetop = stopline
+                                endif
+                                let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline)
+                              endtry
+                            
+                              if before > 0
+                                if has_getcurpos
+                                  call setpos('.', save_cursor)
+                                else
+                                  call winrestview(save_cursor)
+                                endif
+                              endif
+                            
+                              " If a match is found setup match highlighting.
+                              if m_lnum > 0 && m_lnum >= stoplinetop && m_lnum <= stoplinebottom 
+                                if exists('*matchaddpos')
+                                  call matchaddpos('MatchParen', [[c_lnum, c_col - before], [m_lnum, m_col]], 10, 3)
+                                else
+                                  exe '3match MatchParen /\(\%' . c_lnum . 'l\%' . (c_col - before) . 'c\)\|\(\%' . m_lnum . 'l\%' . m_col . 'c\)/'
+                                endif
+                                let w:paren_hl_on = 1
+                              endif
+
+FUNCTION  GetVimIndentIntern()
+Called 1 time
+Total time:   0.000303
+ Self time:   0.000303
+
+count  total (s)   self (s)
+                              " Find a non-blank line above the current line.
+    1              0.000009   let lnum = prevnonblank(v:lnum - 1)
+                            
+                              " If the current line doesn't start with '\' and below a line that starts
+                              " with '\', use the indent of the line above it.
+    1              0.000005   let cur_text = getline(v:lnum)
+    1              0.000014   if cur_text !~ '^\s*\\'
+    1              0.000011     while lnum > 0 && getline(lnum) =~ '^\s*\\'
+                                  let lnum = lnum - 1
+                                endwhile
+    1              0.000001   endif
+                            
+                              " At the start of the file use zero indent.
+    1              0.000002   if lnum == 0
+                                return 0
+                              endif
+    1              0.000004   let prev_text = getline(lnum)
+                            
+                              " Add a 'shiftwidth' after :if, :while, :try, :catch, :finally, :function
+                              " and :else.  Add it three times for a line that starts with '\' after
+                              " a line that doesn't (or g:vim_indent_cont if it exists).
+    1              0.000004   let ind = indent(lnum)
+    1              0.000008   if cur_text =~ '^\s*\\' && v:lnum > 1 && prev_text !~ '^\s*\\'
+                                if exists("g:vim_indent_cont")
+                                  let ind = ind + g:vim_indent_cont
+                                else
+                                  let ind = ind + shiftwidth() * 3
+                                endif
+                              elseif prev_text =~ '^\s*aug\%[roup]\s\+' && prev_text !~ '^\s*aug\%[roup]\s\+[eE][nN][dD]\>'
+                                let ind = ind + shiftwidth()
+                              else
+                                " A line starting with :au does not increment/decrement indent.
+    1              0.000009     if prev_text !~ '^\s*au\%[tocmd]'
+    1              0.000037       let i = match(prev_text, '\(^\||\)\s*\(if\|wh\%[ile]\|for\|try\|cat\%[ch]\|fina\%[lly]\|fu\%[nction]\|el\%[seif]\)\>')
+    1              0.000005       if i >= 0
+    1              0.000006 	let ind += shiftwidth()
+    1              0.000012 	if strpart(prev_text, i, 1) == '|' && has('syntax_items') && synIDattr(synID(lnum, i, 1), "name") =~ '\(Comment\|String\)$'
+                            	  let ind -= shiftwidth()
+                            	endif
+    1              0.000001       endif
+    1              0.000001     endif
+    1              0.000001   endif
+                            
+                              " If the previous line contains an "end" after a pipe, but not in an ":au"
+                              " command.  And not when there is a backslash before the pipe.
+                              " And when syntax HL is enabled avoid a match inside a string.
+    1              0.000045   let i = match(prev_text, '[^\\]|\s*\(ene\@!\)')
+    1              0.000009   if i > 0 && prev_text !~ '^\s*au\%[tocmd]'
+                                if !has('syntax_items') || synIDattr(synID(lnum, i + 2, 1), "name") !~ '\(Comment\|String\)$'
+                                  let ind = ind - shiftwidth()
+                                endif
+                              endif
+                            
+                            
+                              " Subtract a 'shiftwidth' on a :endif, :endwhile, :catch, :finally, :endtry,
+                              " :endfun, :else and :augroup END.
+    1              0.000032   if cur_text =~ '^\s*\(ene\@!\|cat\|fina\|el\|aug\%[roup]\s\+[eE][nN][dD]\)'
+                                let ind = ind - shiftwidth()
+                              endif
+                            
+    1              0.000003   return ind
+
+FUNCTION  provider#python3#Prog()
+Called 1 time
+Total time:   0.000003
+ Self time:   0.000003
+
+count  total (s)   self (s)
+    1              0.000002   return s:prog
+
+FUNCTION  deoplete#util#get_prev_event()
+Called 3 times
+Total time:   0.000019
+ Self time:   0.000019
+
+count  total (s)   self (s)
+    3              0.000016   return get(g:deoplete#_context, 'event', '')
+
+FUNCTION  deoplete#util#get_input()
+Called 9 times
+Total time:   0.000937
+ Self time:   0.000937
+
+count  total (s)   self (s)
+    9              0.000060   let mode = mode()
+    9              0.000035   if a:event ==# 'InsertEnter'
+    6              0.000018     let mode = 'i'
+    6              0.000011   endif
+    9              0.000324   let input = (mode ==# 'i' ? (col('.')-1) : col('.')) >= len(getline('.')) ?      getline('.') :      matchstr(getline('.'),         '^.*\%' . (mode ==# 'i' ? col('.') : col('.') - 1)         . 'c' . (mode ==# 'i' ? '' : '.'))
+                            
+    9              0.000186   if input =~# '^.\{-}\ze\S\+$'
+                                let complete_str = matchstr(input, '\S\+$')
+                                let input = matchstr(input, '^.\{-}\ze\S\+$')
+                              else
+    9              0.000028     let complete_str = ''
+    9              0.000013   endif
+                            
+    9              0.000030   if a:event ==# 'InsertCharPre'
+                                let complete_str .= v:char
+                              endif
+                            
+    9              0.000035   return input . complete_str
+
+FUNCTION  statusline#GetMode()
+Called 74 times
+Total time:   0.000720
+ Self time:   0.000720
+
+count  total (s)   self (s)
+   74              0.000636   return get(s:currentmode, mode(), '')
+
+FUNCTION  deoplete#mapping#_restore_completeopt()
+Called 2 times
+Total time:   0.000046
+ Self time:   0.000046
+
+count  total (s)   self (s)
+    2              0.000025   if exists('g:deoplete#_saved_completeopt')
+                                let &completeopt = g:deoplete#_saved_completeopt
+                                unlet g:deoplete#_saved_completeopt
+                              endif
+
+FUNCTION  <SNR>26_is_skip()
+Called 3 times
+Total time:   0.000780
+ Self time:   0.000113
+
+count  total (s)   self (s)
+    3   0.000677   0.000035   if s:is_skip_text(a:event)
+                                return 1
+                              endif
+                            
+    3   0.000050   0.000025   let disable_auto_complete = deoplete#util#get_simple_buffer_config(   'b:deoplete_disable_auto_complete',   'g:deoplete#disable_auto_complete')
+                            
+    3              0.000026   if &paste || (a:event !=# 'Manual' && disable_auto_complete) || (&l:completefunc !=# '' && &l:buftype =~# 'nofile') || (a:event !=# 'InsertEnter' && mode() !=# 'i')
+                                return 1
+                              endif
+                            
+    3              0.000004   return 0
+
+FUNCTION  <SNR>26_is_exiting()
+Called 2 times
+Total time:   0.000075
+ Self time:   0.000075
+
+count  total (s)   self (s)
+    2              0.000066   return exists('v:exiting') && v:exiting != v:null
+
+FUNCTION  provider#pythonx#Require()
+Called 1 time
+Total time:   0.171647
+ Self time:   0.171633
+
+count  total (s)   self (s)
+    1              0.000005   let ver = (a:host.orig_name ==# 'python') ? 2 : 3
+                            
+                              " Python host arguments
+    1   0.000016   0.000013   let prog = (ver == '2' ?  provider#python#Prog() : provider#python3#Prog())
+    1              0.000004   let args = [prog, '-c', 'import sys; sys.path.remove(""); import neovim; neovim.start_host()']
+                            
+                              " Collect registered Python plugins into args
+    1   0.000024   0.000013   let python_plugins = remote#host#PluginsForHost(a:host.name)
+    2              0.000004   for plugin in python_plugins
+    1              0.000004     call add(args, plugin.path)
+    1              0.000001   endfor
+                            
+    1              0.000001   try
+    1              0.002170     let channel_id = jobstart(args, s:job_opts)
+    1              0.169368     if rpcrequest(channel_id, 'poll') ==# 'ok'
+    1              0.000011       return channel_id
+                                endif
+                              catch
+                                echomsg v:throwpoint
+                                echomsg v:exception
+                                for row in get(s:stderr, channel_id, [])
+                                  echomsg row
+                                endfor
+                              endtry
+                              throw remote#host#LoadErrorForHost(a:host.orig_name, '$NVIM_PYTHON_LOG_FILE')
+
+FUNCTION  statusline#ChangeStatuslineColor()
+Called 74 times
+Total time:   0.114900
+ Self time:   0.114900
+
+count  total (s)   self (s)
+   74              0.000786   if a:mode != s:statusline_last_mode
+    6              0.000153     if (a:mode =~# '\v(v|V||s|S|)' || s:currentmode[a:mode] ==# 'V·BLOCK ' || get(s:currentmode, a:mode, '') ==# 't')
+    1              0.000021       highlight User1 guibg=#FE8018 guifg=#3C3836
+    1              0.000003     elseif (a:mode =~# '\v(R|Rv)')
+                                  highlight User1 guibg=#D3869B guifg=#3C3836
+                                elseif (a:mode ==# 'i')
+    2              0.000035       highlight User1 guibg=#B8BB25 guifg=#3C3836
+    2              0.000003     else
+    3              0.000087       highlight User1 guibg=#8EC07C guifg=#3C3836
+    3              0.000006     endif
+    6              0.108965     redrawstatus
+    6              0.000810     echom strftime('%c')
+    6              0.000029   endif
+                            
+   74              0.000454   let s:statusline_last_mode = a:mode
+   74              0.000270   return ''
+
+FUNCTION  <SNR>25_vimoption2python()
+Called 3 times
+Total time:   0.001475
+ Self time:   0.000938
+
+count  total (s)   self (s)
+    3              0.000010   let has_dash = 0
+    3              0.000008   let patterns = []
+   18              0.000075   for pattern in split(a:option, ',')
+   15              0.000044     if pattern ==# ''
+                                  " ,
+                                  call add(patterns, ',')
+                                elseif pattern ==# '\'
+                                  call add(patterns, '\\')
+                                elseif pattern ==# '-'
+                                  let has_dash = 1
+                                elseif pattern =~# '\d\+'
+    6              0.000126       call add(patterns, substitute(pattern, '\d\+', '\=nr2char(submatch(0))', 'g'))
+    6              0.000010     else
+    9              0.000054       call add(patterns, pattern)
+    9              0.000015     endif
+   15              0.000052   endfor
+                            
+                              " Dash must be last.
+    3              0.000006   if has_dash
+                                call add(patterns, '-')
+                              endif
+                            
+    3   0.000589   0.000052   return join(deoplete#util#uniq(patterns), '')
+
+FUNCTION  deoplete#init#_check_channel()
+Called 3 times
+Total time:   0.000016
+ Self time:   0.000016
+
+count  total (s)   self (s)
+    3              0.000014   return !exists('g:deoplete#_channel_id')
+
+FUNCTION  EndProfile()
+Called 1 time
+Total time:   0.000000
+ Self time:   0.000000
+
+count  total (s)   self (s)
+                              profile pause
+                              noautocmd qall!
+
+FUNCTION  deoplete#handler#_completion_timer_start()
+Called 3 times
+Total time:   0.000243
+ Self time:   0.000216
+
+count  total (s)   self (s)
+    3              0.000025   if exists('s:completion_timer')
+    1   0.000045   0.000018     call s:completion_timer_stop()
+    1              0.000002   endif
+                            
+    3              0.000032   let delay = max([50, g:deoplete#auto_complete_delay])
+    3              0.000067   let s:completion_timer = timer_start(delay, function('s:do_complete'))
+                            
+    3              0.000037   let s:prev_completion = { 'complete_position': [], 'candidates': [], 'event': '' }
+
+FUNCTION  deoplete#util#get_next_input()
+Called 3 times
+Total time:   0.000237
+ Self time:   0.000039
+
+count  total (s)   self (s)
+    3   0.000234   0.000036   return getline('.')[len(deoplete#util#get_input(a:event)) :]
+
+FUNCTION  ReadOnly()
+Called 74 times
+Total time:   0.001045
+ Self time:   0.001045
+
+count  total (s)   self (s)
+   74              0.000406   if &readonly || !&modifiable
+                                return ''
+                              else
+   74              0.000134     return ''
+                              endif
+
+FUNCTION  provider#python3#Call()
+Called 3 times
+Total time:   0.252066
+ Self time:   0.080353
+
+count  total (s)   self (s)
+    3              0.000012   if s:err != ''
+                                return
+                              endif
+    3              0.000010   if !exists('s:host')
+    1              0.000008     let s:rpcrequest = function('rpcrequest')
+                            
+                                " Ensure that we can load the Python3 host before bootstrapping
+    1              0.000002     try
+    1   0.171738   0.000025       let s:host = remote#host#Require('legacy-python3-provider')
+    1              0.000003     catch
+                                  let s:err = v:exception
+                                  echohl WarningMsg
+                                  echomsg v:exception
+                                  echohl None
+                                  return
+                                endtry
+    1              0.000001   endif
+    3              0.080232   return call(s:rpcrequest, insert(insert(a:args, 'python_'.a:method), s:host))
+
+FUNCTION  deoplete#init#_context()
+Called 3 times
+Total time:   0.007301
+ Self time:   0.004068
+
+count  total (s)   self (s)
+    3   0.000467   0.000044   let input = deoplete#util#get_input(a:event)
+                            
+    3   0.000723   0.000066   let [filetype, filetypes, same_filetypes] = deoplete#util#get_context_filetype(input, a:event)
+                            
+    3   0.000062   0.000037   let sources = deoplete#util#convert2list(a:sources)
+    3              0.000016   if a:event !=# 'Manual' && empty(sources)
+                                " Use default sources
+    3   0.000179   0.000045     let sources = deoplete#util#get_buffer_config( filetype, 'b:deoplete_sources', 'g:deoplete#sources', '{}', [])
+    3              0.000005   endif
+                            
+    3   0.000221   0.000064   let keyword_patterns = join(deoplete#util#convert2list(   deoplete#util#get_buffer_config(   filetype, 'b:deoplete_keyword_patterns',   'g:deoplete#keyword_patterns',   'g:deoplete#_keyword_patterns')), '|')
+                            
+                              " Convert keyword pattern.
+    3   0.001573   0.000044   let pattern = deoplete#util#vimoption2python( &l:iskeyword . (&l:lisp ? ',-' : ''))
+    3              0.000043   let keyword_patterns = substitute(keyword_patterns, '\\k', '\=pattern', 'g')
+                            
+    3   0.000059   0.000040   let event = (deoplete#util#get_prev_event() ==# 'Refresh') ? 'Manual' : a:event
+                            
+    3              0.000050   let width = winwidth(0) - col('.') + len(matchstr(input, '\w*$'))
+                            
+    3              0.000016   let bufname = bufname('%')
+    3              0.000454   let bufpath = fnamemodify(bufname, ':p')
+    3              0.000083   if &l:buftype =~# 'nofile' || !filereadable(bufpath)
+                                let bufpath = ''
+                              endif
+                            
+    3   0.003294   0.003004   return { 'changedtick': b:changedtick, 'event': event, 'input': input, 'next_input': deoplete#util#get_next_input(a:event), 'complete_str': '', 'encoding': &encoding, 'position': getpos('.'), 'filetype': filetype, 'filetypes': filetypes, 'same_filetypes': same_filetypes, 'ignorecase': g:deoplete#enable_ignore_case, 'smartcase': g:deoplete#enable_smart_case, 'camelcase': g:deoplete#enable_camel_case, 'delay': g:deoplete#auto_complete_delay, 'sources': sources, 'keyword_patterns': keyword_patterns, 'max_abbr_width': (width * 2 / 3), 'max_menu_width': (width * 2 / 3), 'runtimepath': &runtimepath, 'bufnr': bufnr('%'), 'bufname': bufname, 'bufpath': bufpath, 'bufsize': wordcount().bytes, 'cwd': getcwd(), 'vars': filter(copy(g:), "stridx(v:key, 'deoplete#') == 0"), 'bufvars': filter(copy(b:), "stridx(v:key, 'deoplete_') == 0"), 'custom': deoplete#custom#get(), 'omni__omnifunc': &l:omnifunc, 'dict__dictionary': &l:dictionary, }
+
+FUNCTION  deoplete#util#convert2list()
+Called 8 times
+Total time:   0.000063
+ Self time:   0.000063
+
+count  total (s)   self (s)
+    8              0.000057   return type(a:expr) ==# type([]) ? a:expr : [a:expr]
+
+FUNCTION  deoplete#util#vimoption2python()
+Called 3 times
+Total time:   0.001528
+ Self time:   0.000053
+
+count  total (s)   self (s)
+    3   0.001523   0.000049   return '[a-zA-Z' . s:vimoption2python(a:option) . ']'
+
+FUNCTION  <SNR>26_do_complete()
+Called 2 times
+Total time:   0.000743
+ Self time:   0.000668
+
+count  total (s)   self (s)
+    2              0.000161   let context = g:deoplete#_context
+    2   0.000464   0.000389   if s:is_exiting() || (get(context, 'event', '') !=# 'InsertEnter' && mode() !=# 'i')
+                                call s:completion_timer_stop()
+                                return
+                              endif
+                            
+    2              0.000036   if empty(get(context, 'candidates', [])) || deoplete#util#get_input(context.event) !=# context.input
+    2              0.000007     return
+                              endif
+                            
+                              if context.event !=# 'Manual' && s:prev_completion.complete_position == getpos('.') && s:prev_completion.candidates ==# context.candidates
+                                return
+                              endif
+                            
+                              let s:prev_completion.event = context.event
+                              let s:prev_completion.candidates = context.candidates
+                              let s:prev_completion.complete_position = getpos('.')
+                            
+                              if context.event ==# 'Manual'
+                                let context.event = ''
+                              elseif !exists('g:deoplete#_saved_completeopt')
+                                call deoplete#mapping#_set_completeopt()
+                              endif
+                            
+                              if g:deoplete#complete_method ==# 'complete'
+                                call feedkeys("\<Plug>_", 'i')
+                              elseif g:deoplete#complete_method ==# 'completefunc'
+                                let &l:completefunc = 'deoplete#mapping#_completefunc'
+                                call feedkeys("\<C-x>\<C-u>", 'in')
+                              elseif g:deoplete#complete_method ==# 'omnifunc'
+                                let &l:omnifunc = 'deoplete#mapping#_completefunc'
+                                call feedkeys("\<C-x>\<C-o>", 'in')
+                              endif
+
+FUNCTION  deoplete#util#uniq()
+Called 5 times
+Total time:   0.000725
+ Self time:   0.000725
+
+count  total (s)   self (s)
+    5              0.000078   let list = map(copy(a:list), '[v:val, v:val]')
+    5              0.000012   let i = 0
+    5              0.000011   let seen = {}
+   24              0.000074   while i < len(list)
+   19              0.000097     let key = string(list[i][1])
+   19              0.000067     if has_key(seen, key)
+    2              0.000010       call remove(list, i)
+    2              0.000003     else
+   17              0.000058       let seen[key] = 1
+   17              0.000038       let i += 1
+   17              0.000022     endif
+   19              0.000026   endwhile
+    5              0.000054   return map(list, 'v:val[0]')
+
+FUNCTION  deoplete#custom#get()
+Called 3 times
+Total time:   0.000053
+ Self time:   0.000053
+
+count  total (s)   self (s)
+    3              0.000020   if !exists('s:custom')
+                                let s:custom = {}
+                                let s:custom._ = {}
+                              endif
+                            
+    3              0.000007   return s:custom
+
+FUNCTIONS SORTED ON TOTAL TIME
+count  total (s)   self (s)  function
+    3   0.252066   0.080353  provider#python3#Call()
+    1   0.171713   0.000066  remote#host#Require()
+    1   0.171647   0.171633  provider#pythonx#Require()
+   74   0.114900             statusline#ChangeStatuslineColor()
+    1   0.052054             UltiSnips#TrackChange()
+   57   0.010905             <SNR>55_Highlight_Matching_Pair()
+    3   0.008804   0.000332  <SNR>26_completion_begin()
+    3   0.007301   0.004068  deoplete#init#_context()
+    3   0.001528   0.000053  deoplete#util#vimoption2python()
+    3   0.001475   0.000938  <SNR>25_vimoption2python()
+   74   0.001045             ReadOnly()
+    9   0.000937             deoplete#util#get_input()
+    3   0.000780   0.000113  <SNR>26_is_skip()
+    2   0.000743   0.000668  <SNR>26_do_complete()
+    5   0.000725             deoplete#util#uniq()
+   74   0.000720             statusline#GetMode()
+    3   0.000657   0.000469  deoplete#util#get_context_filetype()
+    3   0.000642   0.000286  <SNR>26_is_skip_text()
+    1   0.000377   0.000074  GetVimIndent()
+    8   0.000335             deoplete#util#get_buffer_config()
+
+FUNCTIONS SORTED ON SELF TIME
+count  total (s)   self (s)  function
+    1   0.171647   0.171633  provider#pythonx#Require()
+   74              0.114900  statusline#ChangeStatuslineColor()
+    3   0.252066   0.080353  provider#python3#Call()
+    1              0.052054  UltiSnips#TrackChange()
+   57              0.010905  <SNR>55_Highlight_Matching_Pair()
+    3   0.007301   0.004068  deoplete#init#_context()
+   74              0.001045  ReadOnly()
+    3   0.001475   0.000938  <SNR>25_vimoption2python()
+    9              0.000937  deoplete#util#get_input()
+    5              0.000725  deoplete#util#uniq()
+   74              0.000720  statusline#GetMode()
+    2   0.000743   0.000668  <SNR>26_do_complete()
+    3   0.000657   0.000469  deoplete#util#get_context_filetype()
+    8              0.000335  deoplete#util#get_buffer_config()
+    3   0.008804   0.000332  <SNR>26_completion_begin()
+    1              0.000303  GetVimIndentIntern()
+    3   0.000309   0.000293  deoplete#util#rpcnotify()
+    3   0.000642   0.000286  <SNR>26_is_skip_text()
+    3   0.000243   0.000216  deoplete#handler#_completion_timer_start()
+    3   0.000780   0.000113  <SNR>26_is_skip()
+

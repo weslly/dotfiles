@@ -20,3 +20,16 @@ function! functions#StripTrailingWhitespace()
     normal `z
   endif
 endfunction
+
+
+function! StartProfile()
+  profile start profile.log
+  profile func *
+  profile file *
+endfunction
+
+function! EndProfile()
+  profile pause
+  noautocmd qall!
+endfunction
+
