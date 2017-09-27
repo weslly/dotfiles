@@ -44,6 +44,7 @@ call plug#end()
 " }}}
 
 set background=dark
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -77,6 +78,7 @@ endif
 " plugin/autocmd.vim      " Auto Commands
 " plugin/commands.vim     " Commands
 " plugin/autosession.vim  " Auto-Session Plugin
+" plugin/statusline.vim   " Statusline
 " after/plugin            " Plugin Settings
 " autoload/functions.vim  " Functions
 " ftplugin                " File-type plugins
@@ -85,3 +87,4 @@ endif
 "
 " }}}
 "
+set shortmess+=c

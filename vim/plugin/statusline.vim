@@ -56,6 +56,11 @@ function! statusline#ChangeStatuslineColor(mode)
   return ''
 endfunction
 
+augroup statusline
+  autocmd!
+  autocmd InsertEnter,InsertLeave * call statusline#ChangeStatuslineColor(mode())
+augroup END
+
 
 highlight StatusLine guifg=#3C3836 guibg=#E4DCB6
 highlight User1 guibg=#8EC07C guifg=#3C3836 gui=bold cterm=bold term=bold
@@ -73,5 +78,6 @@ set statusline+=%*
 set statusline+=%0*\ %=                                         " Space
 set statusline+=%0*\ %y\                                        " FileType
 set statusline+=%0*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\        " Encoding & Fileformat
-set statusline+=%0*\ %3p%%\ ␤\ %l:%c\                           " Rownumber/total (%)
+set statusline+=%0*\ %3p%%\ \ \%l:%c\                           " Rownumber/total (%)
+
 

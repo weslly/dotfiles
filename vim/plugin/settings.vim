@@ -12,7 +12,7 @@ set softtabstop=4
 set expandtab
 set shiftround
 
-" set cursorline
+set nocursorline
 set ignorecase
 set smartcase
 set foldenable
