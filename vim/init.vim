@@ -6,7 +6,7 @@ if has('nvim')
   set termguicolors
 endif
 
-" Vim-Plug {{{
+" Vim-Plug
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -27,7 +27,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'Yggdroot/indentLine'
 Plug 'vimwiki/vimwiki'
 
-" Python
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
@@ -35,16 +34,12 @@ Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'htmldjango', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
 Plug 'morhetz/gruvbox'
-
-"
-" Plug 'w0rp/ale'
 call plug#end()
-" }}}
 
-set background=dark
+
 let g:gruvbox_contrast_dark='hard'
+set background=dark
 colorscheme gruvbox
 
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -87,4 +82,3 @@ endif
 "
 " }}}
 "
-set shortmess+=c

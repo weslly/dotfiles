@@ -1,4 +1,4 @@
-function! SaveSess(new)
+function! autosession#SaveSess(new) abort
   if g:VimAutoSessionDisable ==? 0 || a:new
     let g:VimAutoSessionDisable = 0
     if a:new || filereadable(getcwd() . '/.session.vim')
@@ -7,7 +7,7 @@ function! SaveSess(new)
   endif
 endfunction
 
-function! RestoreSess()
+function! autosession#RestoreSess() abort
   if @% ==? '' && filereadable(getcwd() . '/.session.vim')
     let g:VimAutoSessionDisable = 0
     execute 'so ' . getcwd() . '/.session.vim'
@@ -24,8 +24,8 @@ function! RestoreSess()
 endfunction
 
 augroup VimAutoSession
-  autocmd VimLeave * call SaveSess(0)
-  autocmd VimEnter * nested call RestoreSess()
+  autocmd VimLeave * call autosession#SaveSess(0)
+  autocmd VimEnter * nested call autosession#RestoreSess()
 augroup END
 
-command! SaveSession call SaveSess(1)
+command! SaveSession call autosession#SaveSess(1)

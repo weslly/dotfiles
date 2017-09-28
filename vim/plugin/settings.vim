@@ -12,7 +12,6 @@ set softtabstop=4
 set expandtab
 set shiftround
 
-set nocursorline
 set ignorecase
 set smartcase
 set foldenable
@@ -27,7 +26,6 @@ set virtualedit=block
 
 set scrolljump=5
 set timeoutlen=500
-" set lazyredraw
 set showmatch
 set number
 

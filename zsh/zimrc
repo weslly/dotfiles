@@ -21,7 +21,6 @@ zmodules=(
     utility
     meta
     custom
-    syntax-highlighting
     history-substring-search
     prompt
     completion
@@ -29,6 +28,7 @@ zmodules=(
     spectrum
 )
 
+    # syntax-highlighting
 
 ###################
 # MODULE SETTINGS #
@@ -39,7 +39,7 @@ zmodules=(
 #
 
 # Set your desired prompt here
-# zprompt_theme='pure'
+zprompt_theme='minimal'
 
 #
 # Completion

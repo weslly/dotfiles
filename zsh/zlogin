@@ -54,6 +54,13 @@
 
   # zsh-histery-substring-search
   zcompare ${zim_mods}/history-substring-search/external/zsh-history-substring-search.zsh
-  
+
 
 ) &!
+
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zprof
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi

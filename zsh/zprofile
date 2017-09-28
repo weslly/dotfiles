@@ -1,13 +1,12 @@
 # vim: ft=zsh:syntax=zsh
 
-
 export TERM=xterm-256color
 export DISABLE_AUTO_TITLE="true"
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export PAGER='less'
-
 export LANG=en_US.UTF-8
+
 export LC_ALL=en_US.UTF-8
 export is_dev=1
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/share/npm/bin:/Library/Frameworks/Mono.framework/Commands:/Users/weslly/.local/bin:$HOME/.cargo/bin
@@ -30,7 +29,7 @@ path=(
   /usr/local/opt/python/libexec/bin
   /usr/local/opt/curl/bin
   /usr/local/Cellar/git
-  ${HOME}/.dotfiles/bin
+  ${HOME}/dotfiles/bin
   $path
 )
 

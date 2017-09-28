@@ -1,51 +1,31 @@
 setopt HIST_IGNORE_ALL_DUPS
 setopt autoparamslash
-
-# ZPlug
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-  if (( $+commands[git] )); then
-    git clone https://github.com/zplug/zplug ~/.zplug
-  else
-    echo 'git not found' >&2
-    exit 1
-  fi
-fi
-
 export _Z_NO_COMPLETE_CD=1
 
+# ZPlug
 source ~/.zplug/init.zsh
 
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 
 # ZPlug Modules
-
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "Eriner/zim", depth:1, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/Eriner/zim ~/.zim"
-zplug "knu/z", use:"z.sh", depth:1
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
+zplug "knu/z", use:"z.sh", depth:1, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
-
-# Check and install missing modules
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-
+# check and install missing modules
+# if ! zplug check --verbose; then
+#   printf "install? [y/n]: "
+#   if read -q; then
+#     echo; zplug install
+#   fi
+# fi
 
 zplug load
 
-ZSH_THEME="aaron"
 
 HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
 
 # Change default zim location
-export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-
-# # Source zim
-if [[ -s ${ZIM_HOME}/init.zsh ]]; then
-  source ${ZIM_HOME}/init.zsh
-fi
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -54,12 +34,9 @@ export FZF_DEFAULT_COMMAND='ag -g ""'
 alias vim=$EDITOR
 alias vi=$EDITOR
 
-
-
 export HOMEBREW_NO_ANALYTICS=1
 
-source "$HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh"
-
+# source "$HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh"
 
 alias flush="sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
