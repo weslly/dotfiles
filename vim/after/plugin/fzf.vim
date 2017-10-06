@@ -28,7 +28,6 @@ map <C-p> :Files<cr>
 nmap <C-p> :Files<cr>
 
 nnoremap <silent> <leader><leader> :Files<cr>
-nnoremap <silent> <Leader>b :Buffers<cr>
 nnoremap <silent> <Leader>h :Helptags<cr>
 
 function! s:fzf_statusline()

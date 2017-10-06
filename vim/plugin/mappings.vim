@@ -11,16 +11,11 @@ nnoremap <esc> :noh<return><esc>
 "Fold tags
 nnoremap <leader>ft Vatzf
 
-"Opens a vertical split and switches over (\v)
-nnoremap <leader>v <C-w>v<C-w>l
-
 "Shortcut for editing  vimrc file in a new tab
 nmap <leader>ev :e $MYVIMRC<cr>
 
 "Faster shortcut for commenting. Requires T-Comment plugin
 map <leader>c <c-_><c-_>
-
-noremap <leader>n :%s//
 
 " better buffer navigation
 nmap <F3> :bnext<CR>

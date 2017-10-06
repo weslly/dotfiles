@@ -24,7 +24,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'vimwiki/vimwiki'
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -38,6 +38,7 @@ Plug 'morhetz/gruvbox'
 call plug#end()
 
 
+let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 colorscheme gruvbox

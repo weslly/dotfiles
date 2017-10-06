@@ -24,7 +24,7 @@ set nobackup
 
 set virtualedit=block
 
-set scrolljump=5
+" set scrolljump=5
 set timeoutlen=500
 set showmatch
 set number
