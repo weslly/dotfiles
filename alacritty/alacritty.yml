@@ -53,7 +53,7 @@ font:
     style: Italic
 
   # Point size of the font
-  size: 12.0
+  size: 13.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -71,7 +71,7 @@ font:
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: false
+  use_thin_strokes: true
 
 # Should display the render timer
 render_timer: false
@@ -79,6 +79,7 @@ render_timer: false
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
+
 
 # Colors (Gruvbox dark)
 colors:
@@ -113,6 +114,7 @@ colors:
     magenta: '0xd3869b'
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
+
 
 
 # Visual Bell

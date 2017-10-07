@@ -22,13 +22,13 @@ function! functions#StripTrailingWhitespace()
 endfunction
 
 
-function! StartProfile()
+function! functions#StartProfile()
   profile start profile.log
   profile func *
   profile file *
 endfunction
 
-function! EndProfile()
+function! functions#EndProfile()
   profile pause
   noautocmd qall!
 endfunction

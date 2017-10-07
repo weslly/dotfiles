@@ -8,9 +8,7 @@ endif
 
 set clipboard=unnamed
 set hidden
-set smartindent
 set autoindent
-set tabstop=2
 set shiftwidth=2
 " set softtabstop=2
 set expandtab
@@ -27,6 +25,7 @@ set virtualedit=block
 set timeoutlen=500
 set showmatch
 set number
+set noshowmode
 
 if exists('&inccommand')
   set inccommand=split
@@ -58,13 +57,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
 Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
+" Plug 'w0rp/ale', {'for': ['python']}
 
-Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'htmldjango', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
+Plug 'mattn/emmet-vim', { 'for': ['scss', 'css', 'html', 'htmldjango', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 call plug#end()
-
 
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark='hard'
@@ -80,7 +79,7 @@ let g:netrw_liststyle = 3
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 
 if has('nvim')
-  call deoplete#enable()
+  let g:deoplete#enable_at_startup = 1
 endif
 
 nnoremap <leader>] :call functions#NumberToggle()<cr>
@@ -107,8 +106,6 @@ endif
 
 " Other files {{{
 "
-" plugin/settings.vim     " Settings
-" plugin/mappings.vim     " Key Mappings
 " plugin/autocmd.vim      " Auto Commands
 " plugin/commands.vim     " Commands
 " plugin/autosession.vim  " Auto-Session Plugin
