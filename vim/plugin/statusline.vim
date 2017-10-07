@@ -1,6 +1,5 @@
 " vim: sw=2:ts=2
 scriptencoding utf-8
-set noshowmode
 
 let s:currentmode={
     \ 'n'  : 'NORMAL ',

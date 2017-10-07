@@ -6,8 +6,37 @@ if has('nvim')
   set termguicolors
 endif
 
+set clipboard=unnamed
+set hidden
+set smartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+" set softtabstop=2
+set expandtab
+set shiftround
+set ignorecase
+set smartcase
+set foldenable
+set mouse=a
+set splitbelow
+set splitright
+set noswapfile
+set nobackup
+set virtualedit=block
+set timeoutlen=500
+set showmatch
+set number
+
+if exists('&inccommand')
+  set inccommand=split
+endif
+
+let g:mapleader= ' '
+
 " Vim-Plug
 call plug#begin('~/.config/nvim/plugged')
+Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
@@ -24,7 +53,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'bronson/vim-visual-star-search'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jiangmiao/auto-pairs'
-" Plug 'Yggdroot/indentLine'
 Plug 'vimwiki/vimwiki'
 
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
@@ -55,10 +83,20 @@ if has('nvim')
   call deoplete#enable()
 endif
 
+nnoremap <leader>] :call functions#NumberToggle()<cr>
+nnoremap <leader>ft Vatzf
+nmap <leader>ev :e $MYVIMRC<cr>
+map <leader>c <c-_><c-_>
+nmap <F3> :bnext<CR>
+nmap <F2> :bprev<CR>
+nmap <leader>o :Buffers<CR>
+imap jj <esc>
+
 augroup AutoReloadVimrc
   autocmd!
   autocmd BufWritePost $MYVIMRC nested silent source $MYVIMRC
 augroup END
+
 
 " Project specific override
 "================================================================================
