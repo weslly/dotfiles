@@ -90,6 +90,7 @@ nmap <F3> :bnext<CR>
 nmap <F2> :bprev<CR>
 nmap <leader>o :Buffers<CR>
 imap jj <esc>
+nnoremap <silent> <esc> :nohlsearch<CR>
 
 augroup AutoReloadVimrc
   autocmd!
