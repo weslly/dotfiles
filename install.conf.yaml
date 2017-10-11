@@ -16,6 +16,7 @@
     ~/.vimrc: vim/init.vim
     ~/.config/nvim: vim
     ~/.config/alacritty: alacritty
+    ~/.config/karabiner: karabiner
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
