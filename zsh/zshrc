@@ -12,6 +12,8 @@ zplug "Eriner/zim", depth:1, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/Eri
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "knu/z", use:"z.sh", depth:1, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
+
 # check and install missing modules
 # if ! zplug check --verbose; then
 #   printf "install? [y/n]: "
@@ -22,6 +24,7 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 zplug load
 
+ZSH_THEME="aaron"
 
 HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
 

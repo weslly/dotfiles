@@ -26,11 +26,6 @@ padding:
   x: 2
   y: 2
 
-# The FreeType rasterizer needs to know the device DPI for best results
-# (changes require restart)
-dpi:
-  x: 96.42
-  y: 96.42
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -87,8 +82,8 @@ colors:
   primary:
 
     # high contrast
-    background: '0x1d2021'
-    # background: '0x282828'
+    # background: '0x1d2021'
+    background: '0x282828'
     # soft contrast
     # background: '0x32302f'
     foreground: '0xebdbb2'

@@ -22,7 +22,7 @@ zmodules=(
     meta
     custom
     history-substring-search
-    prompt
+    # prompt
     completion
     ssh
     spectrum
@@ -39,7 +39,7 @@ zmodules=(
 #
 
 # Set your desired prompt here
-zprompt_theme='minimal'
+# zprompt_theme='gitster'
 
 #
 # Completion

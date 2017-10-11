@@ -4,5 +4,6 @@ setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal textwidth=79
 setlocal autoindent
+setlocal smartindent
 
 let g:python_highlight_all = 1
