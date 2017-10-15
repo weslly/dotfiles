@@ -1,12 +1,13 @@
 
 " Trim whitespace on save
 augroup TrimWhiteSpace
-    autocmd BufWritePre * :call functions#StripTrailingWhitespace()
+  autocmd!
+  autocmd BufWritePre * :call functions#StripTrailingWhitespace()
 augroup END
 
 "
 " Automatically equalize splits when Vim is resized
 augroup VimRez
-    autocmd VimResized * wincmd =
+  autocmd!
+  autocmd VimResized * wincmd =
 augroup END
-

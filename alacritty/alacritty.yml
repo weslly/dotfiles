@@ -37,14 +37,14 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: ubuntu mono
+    family: mononoki
 
   bold:
-    family: ubuntu mono
+    family: mononoki
     style: Bold
 
   italic:
-    family: ubuntu mono
+    family: mononoki
     style: Italic
 
   # Point size of the font
@@ -53,7 +53,7 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 1.0
+    x: 0.0
     y: 0.0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -75,8 +75,7 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-
-# Colors (Gruvbox dark)
+#Colors (Gruvbox dark) {{{
 colors:
   # Default colors
   primary:
@@ -109,8 +108,7 @@ colors:
     magenta: '0xd3869b'
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
-
-
+#}}}
 
 # Visual Bell
 #
@@ -139,9 +137,9 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 1.0
+background_opacity: 0.95
 
-# Key bindings
+# Key bindings {{{
 #
 # Each binding is defined as an object with some properties. Most of the
 # properties are optional. All of the alphabetical keys should have a letter for
@@ -235,7 +233,10 @@ key_bindings:
   - { key: Key5,     mods: Control, chars: "\x1d"                        }
   - { key: Key6,     mods: Control, chars: "\x1e"                        }
   - { key: Key7,     mods: Control, chars: "\x1f"                        }
-
+  - { key: Key0,     mods: Command, action: ResetFontSize                }
+  - { key: Equals,   mods: Command, action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command, action: DecreaseFontSize             }
+# }}}
 
 # Mouse bindings
 #
@@ -279,3 +280,5 @@ shell:
    - "-A"
    - "-s"
    - main
+
+# vim: fdm=marker

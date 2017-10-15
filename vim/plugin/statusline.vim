@@ -55,6 +55,7 @@ function! statusline#ChangeStatuslineColor(mode)
   return ''
 endfunction
 
+
 augroup statusline
   autocmd!
   autocmd InsertEnter,InsertLeave * call statusline#ChangeStatuslineColor(mode())

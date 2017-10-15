@@ -5,6 +5,7 @@ filetype plugin indent on
 " Settings {{{
 if has('nvim')
   set termguicolors
+  set timeoutlen=500
 endif
 
 set clipboard=unnamed
@@ -22,10 +23,10 @@ set splitright
 set noswapfile
 set nobackup
 set virtualedit=block
-set timeoutlen=500
 set showmatch
 set number
 set noshowmode
+set scrolljump=5
 
 if exists('&inccommand')
   set inccommand=split
@@ -42,7 +43,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'jinja.html']}
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -57,8 +58,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
-Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
-Plug 'Yggdroot/indentLine'
+" Plug 'Vimjas/vim-python-pep8-indent', {'for': ['python']}
 Plug 'mattn/emmet-vim', { 'for': ['scss', 'css', 'php.html', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -67,7 +67,7 @@ call plug#end()
 " }}}
 
 let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='hard'
 set background=dark
 colorscheme gruvbox
 
@@ -78,6 +78,7 @@ let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
 
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
+let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh']
 
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
@@ -92,7 +93,6 @@ nmap <F2> :bprev<CR>
 nmap <leader>o :Buffers<CR>
 imap jj <esc>
 nnoremap <silent> <esc> :nohlsearch<CR>
-
 
 " Auto reload vimrc on save {{{
 augroup AutoReloadVimrc
