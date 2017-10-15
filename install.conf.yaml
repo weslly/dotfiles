@@ -12,6 +12,7 @@
     ~/.zimrc: zsh/zimrc
     ~/.gitconfig: git/gitconfig
     ~/.gitignore_global: git/gitignore_global
+    ~/.gitconfig.local: private/.gitconfig.local
     ~/.vim: vim
     ~/.vimrc: vim/init.vim
     ~/.config/nvim: vim
