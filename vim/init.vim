@@ -93,13 +93,7 @@ nmap <F2> :bprev<CR>
 nmap <leader>o :Buffers<CR>
 imap jj <esc>
 nnoremap <silent> <esc> :nohlsearch<CR>
-
-" Auto reload vimrc on save {{{
-augroup AutoReloadVimrc
-  autocmd!
-  autocmd BufWritePost $MYVIMRC,~/.vimrc nested silent source $MYVIMRC
-augroup END
-" }}}
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 
 " Project specific override {{{
@@ -110,9 +104,34 @@ endif
 " }}}
 
 
+command! Reveal call functions#RevealInFinder()
+
+command! -nargs=1 Duplicate execute "saveas" expand('%:p:h') . '/' . <q-args>
+
+
+" Custom AutoCmds {{{
+augroup vimrcEx
+  autocmd!
+  " Strip trailing whitespace on save
+  autocmd BufWritePre * :call functions#StripTrailingWhitespace()
+
+  " Automatically equalize splits when Vim is resized
+  autocmd VimResized * wincmd =
+
+  " See :h last-position-jump
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \     exe "normal! g`\"" |
+    \ endif
+
+  " Auto reload vimrc on save
+  autocmd BufWritePost $MYVIMRC,~/.vimrc nested silent source $MYVIMRC
+augroup END
+
+" }}}
+
+
 " Other files {{{
-" plugin/autocmd.vim      " Auto Commands
-" plugin/commands.vim     " Commands
 " plugin/autosession.vim  " Auto-Session Plugin
 " plugin/statusline.vim   " Statusline
 " after/plugin            " Plugin Settings
