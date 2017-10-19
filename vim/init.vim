@@ -63,6 +63,7 @@ Plug 'mattn/emmet-vim', { 'for': ['scss', 'css', 'php.html', 'html', 'htmldjango
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
+Plug 'w0rp/ale'
 call plug#end()
 " }}}
 
@@ -79,6 +80,7 @@ let g:netrw_liststyle = 3
 
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh']
+set grepprg=ag\ --vimgrep
 
 if has('nvim')
   let g:deoplete#enable_at_startup = 1
