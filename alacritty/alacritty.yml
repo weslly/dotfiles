@@ -37,18 +37,18 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: inconsolata
+    family: mononoki
 
   bold:
-    family: inconsolata
+    family: mononoki
     style: Bold
 
   italic:
-    family: inconsolata
+    family: mononoki
     style: Italic
 
   # Point size of the font
-  size: 13.0
+  size: 12.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -279,5 +279,4 @@ shell:
    - "-A"
    - "-s"
    - main
-
 # vim: fdm=marker

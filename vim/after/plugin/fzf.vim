@@ -1,4 +1,6 @@
 " FZF
+"
+    
 let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
 
 let g:fzf_files_options = $FZF_CTRL_T_OPTS
@@ -39,8 +41,8 @@ function! s:ag_handler(lines)
   if len(a:lines) < 2 | return | endif
 
   let cmd = get({'ctrl-x': 'split',
-               \ 'ctrl-v': 'vertical split',
-               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+              \ 'ctrl-v': 'vertical split',
+              \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
   let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
 
   let first = list[0]
@@ -90,3 +92,4 @@ command! -nargs=* Todo call fzf#run({
 \            '--color hl:68,hl+:110',
 \ 'down':    '50%'
 \ })
+
