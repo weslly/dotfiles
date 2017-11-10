@@ -1,11 +1,3 @@
-function! functions#NumberToggle()
-  if(&relativenumber == 1)
-    set number norelativenumber
-  else
-    set relativenumber
-  endif
-endfunction
-
 function! functions#StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
     normal mz

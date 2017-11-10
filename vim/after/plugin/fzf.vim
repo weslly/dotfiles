@@ -1,7 +1,6 @@
 " FZF
 "
-    
-let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
+let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.map" --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
 
 let g:fzf_files_options = $FZF_CTRL_T_OPTS
 " let g:fzf_layout = { 'window': 'enew' }
@@ -13,31 +12,13 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Fuzzy-find with fzf
-map <C-p> :Files<cr>
-nmap <C-p> :Files<cr>
-
-nnoremap <silent> <leader><leader> :Files<cr>
-nnoremap <silent> <Leader>h :Helptags<cr>
-
-function! s:fzf_statusline()
-  " Override statusline as you like
-  hi def link fzf1 airline_a
-  hi def link fzf2 airline_b
-  hi def link fzf3 airline_c
-  setlocal statusline=%#fzf1#\ >\ %#fzf2#fzf\ %#fzf3#V:\ ctrl-v,\ H:\ ctrl-x
-endfunction
-
-autocmd! User FzfStatusLine call <SID>fzf_statusline()
-
-
-function! s:ag_to_qf(line)
+function! s:ag_to_qf(line) abort
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
         \ 'text': join(parts[3:], ':')}
 endfunction
 
-function! s:ag_handler(lines)
+function! s:ag_handler(lines) abort
   if len(a:lines) < 2 | return | endif
 
   let cmd = get({'ctrl-x': 'split',

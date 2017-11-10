@@ -7,3 +7,4 @@ setlocal autoindent
 setlocal smartindent
 
 let g:python_highlight_all = 1
+
