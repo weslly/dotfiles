@@ -7,7 +7,6 @@
 - link:
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zshrc: zsh/zshrc
-    ~/.zprofile: zsh/zprofile
     ~/.zlogin: zsh/zlogin
     ~/.zimrc: zsh/zimrc
     ~/.gitconfig: git/gitconfig

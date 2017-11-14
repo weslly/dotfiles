@@ -1,3 +1,42 @@
+export TERM=xterm-256color
+export DISABLE_AUTO_TITLE="true"
+export EDITOR="nvim"
+export GIT_EDITOR=$EDITOR
+export PAGER='less'
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export is_dev=1
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/share/npm/bin:/Library/Frameworks/Mono.framework/Commands:/Users/weslly/.local/bin:$HOME/.cargo/bin
+
+export PATH="/usr/local/opt/qt5/bin:$PATH"
+export PATH="/usr/local/opt/qt/bin:$PATH"
+
+fpath=(
+  '/usr/local/share/zsh/site-functions'
+  $fpath
+  )
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+(( $+commands[nvim] )) && export MANPAGER="nvim -c 'set ft=man' -"
+
+path=(
+  /usr/local/{bin,sbin}
+  /usr/local/opt/coreutils/libexec/gnubin
+  /usr/local/opt/python/libexec/bin
+  /usr/local/opt/curl/bin
+  /usr/local/Cellar/git
+  ${HOME}/dotfiles/bin
+  $path
+)
+
+if (( $+commands[yarn] )); then
+  path+=($(yarn global bin))
+fi
+
+export LESS='-F -g -i -M -R -S -w -X -z-4'
+
 setopt HIST_IGNORE_ALL_DUPS
 setopt autoparamslash
 export _Z_NO_COMPLETE_CD=1
@@ -13,14 +52,6 @@ zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "knu/z", use:"z.sh", depth:1, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
-
-# check and install missing modules
-# if ! zplug check --verbose; then
-#   printf "install? [y/n]: "
-#   if read -q; then
-#     echo; zplug install
-#   fi
-# fi
 
 zplug load
 
@@ -39,12 +70,8 @@ alias vi=$EDITOR
 
 export HOMEBREW_NO_ANALYTICS=1
 
-# source "$HOME/.config/nvim/plugged/gruvbox/gruvbox_256palette.sh"
-
 alias flush="sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 
-
 bindkey '^P' fzf-cd-widget
-

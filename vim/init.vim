@@ -2,10 +2,6 @@ filetype on
 filetype plugin indent on
 syntax enable
 
-if &encoding ==# 'latin1' && has('gui_running')
-  set encoding=utf-8
-endif
-
 " Settings {{{
 if has('nvim')
   set timeoutlen=500
@@ -22,52 +18,47 @@ if !has('nvim') && exists('&ttymouse')
   set ttymouse=xterm2
 endif
 
-set hlsearch
 set clipboard=unnamed
+set mouse=a
 set hidden
+set foldenable
+set virtualedit=block
+set showmatch
+set number
+set backspace=indent,eol,start
+set complete-=i
+set nrformats-=octal
+set wildmenu
+set formatoptions+=j " Delete comment character when joining commented lines
+set autoread
+set history=1000
+set cursorline
+set display+=lastline
+
+" Splits
+set splitbelow
+set splitright
+
+" Indent
 set autoindent
 set shiftwidth=2
 set expandtab
 set shiftround
-set ignorecase
-set smartcase
-set foldenable
-set mouse=a
-set splitbelow
-set splitright
-set virtualedit=block
-set showmatch
-set number
-set scrolljump=5
-set backspace=indent,eol,start
-set complete-=i
 set smarttab
-set nrformats-=octal
-set incsearch
-set ruler
-set wildmenu
+
+" Scroll
 set scrolloff=1
 set sidescrolloff=5
-set display+=lastline
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set formatoptions+=j " Delete comment character when joining commented lines
-set autoread
-set history=1000
-set sessionoptions-=options
-set fileformats+=mac
-set cursorline
+set scrolljump=5
 
-set backupdir=~/.local/share/nvim/backup
-set directory=~/.local/share/nvim/swap
+" Search 
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
 
-set laststatus=2
-set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%
-
-set path+=**
-set wildignore+=*/node_modules/*,*/vendor/*
-
-if has('path_extra')
-  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+if exists('&inccommand')
+  set inccommand=split
 endif
 
 if executable('rg')
@@ -76,8 +67,26 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 
-if exists('&inccommand')
-  set inccommand=split
+" Statusline
+set laststatus=2
+set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%
+
+set path+=**
+set wildignore+=*.swp,*.bak
+set wildignore+=*.pyc,*.min.*,bundle.*
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore+=*/min/*,*/vendor/*
+set wildignore+=*/node_modules/*,*/bower_components/*
+set wildignore+=tags,cscope.*
+set wildignore+=*.tar.*
+
+set undofile
+set undodir=/tmp/
+set backupdir=~/.local/share/nvim/backup
+set directory=~/.local/share/nvim/swap
+
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 " }}}
 
@@ -93,7 +102,6 @@ Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sleuth'
@@ -113,7 +121,6 @@ Plug 'w0rp/ale'
 call plug#end()
 " }}}
 
-let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_invert_selection = 0
 set background=dark
 colorscheme gruvbox
@@ -142,14 +149,10 @@ noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
 nnoremap <silent> <Leader>h :Helptags<cr>
-
-
-" Project specific override {{{
-let s:vimrc_project = $PWD . '/.local.vim'
-if filereadable(s:vimrc_project)
-  execute 'source ' . s:vimrc_project
-endif
-" }}}
+map <up> <Nop>
+map <down> <Nop>
+map <left> <Nop>
+map <right> <Nop>
 
 
 " Custom AutoCmds {{{
@@ -191,6 +194,12 @@ endif
 
 " }}}
 
+" Project specific override {{{
+let s:vimrc_project = $PWD . '/.local.vim'
+if filereadable(s:vimrc_project)
+  execute 'source ' . s:vimrc_project
+endif
+" }}}
 
 " Other files {{{
 " plugin/autosession.vim  " Auto-Session Plugin

@@ -1,5 +1,3 @@
-
-
 #
 # startup file read in interactive login shells
 #
