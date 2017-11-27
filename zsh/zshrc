@@ -63,7 +63,7 @@ HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 alias vim=$EDITOR
 alias vi=$EDITOR
@@ -75,3 +75,4 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 
 bindkey '^P' fzf-cd-widget
+

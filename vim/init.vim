@@ -27,12 +27,10 @@ set showmatch
 set number
 set backspace=indent,eol,start
 set complete-=i
-set nrformats-=octal
 set wildmenu
 set formatoptions+=j " Delete comment character when joining commented lines
 set autoread
 set history=1000
-set cursorline
 set display+=lastline
 
 " Splits
@@ -49,7 +47,7 @@ set smarttab
 " Scroll
 set scrolloff=1
 set sidescrolloff=5
-set scrolljump=5
+" set scrolljump=5
 
 " Search 
 set incsearch
@@ -69,13 +67,13 @@ endif
 
 " Statusline
 set laststatus=2
-set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%
+set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%\ "
 
 set path+=**
 set wildignore+=*.swp,*.bak
 set wildignore+=*.pyc,*.min.*,bundle.*
 set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignore+=*/min/*,*/vendor/*
+set wildignore+=*/min/*,*/vendor/*,*/dist/*
 set wildignore+=*/node_modules/*,*/bower_components/*
 set wildignore+=tags,cscope.*
 set wildignore+=*.tar.*
@@ -85,13 +83,15 @@ set undodir=/tmp/
 set backupdir=~/.local/share/nvim/backup
 set directory=~/.local/share/nvim/swap
 
+set foldlevelstart=999
+set foldmethod=indent
+
 if has('path_extra')
   setglobal tags-=./tags tags-=./tags; tags^=./tags;
 endif
 " }}}
 
 let g:mapleader= ' '
-
 
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
@@ -100,8 +100,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
 Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sleuth'
@@ -118,12 +117,17 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
+Plug 'xtal8/traces.vim'
 call plug#end()
 " }}}
 
+let g:polyglot_disabled = ['jinja']
+
 let g:gruvbox_invert_selection = 0
+let g:gruvbox_contrast_dark = 'hard'
 set background=dark
 colorscheme gruvbox
+
 
 let g:UltsSnipsExpandTrigger='<tab>'
 
@@ -149,10 +153,7 @@ noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
 nnoremap <silent> <Leader>h :Helptags<cr>
-map <up> <Nop>
-map <down> <Nop>
-map <left> <Nop>
-map <right> <Nop>
+nnoremap <F3>  :vnew<cr>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile noundofile<cr>
 
 
 " Custom AutoCmds {{{
@@ -191,7 +192,6 @@ if has('patch-8.0.1238')
   augroup END
 endif
 
-
 " }}}
 
 " Project specific override {{{
@@ -200,6 +200,7 @@ if filereadable(s:vimrc_project)
   execute 'source ' . s:vimrc_project
 endif
 " }}}
+
 
 " Other files {{{
 " plugin/autosession.vim  " Auto-Session Plugin

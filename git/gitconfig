@@ -51,3 +51,9 @@
 [pager]
     diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
     show = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+[user]
+	signingkey = 087B8E448E68421E81FCFC810506FFCC6A90226C
+	name = Weslly
+	email = weslly.honorato@gmail.com
+[gpg]
+	program = gpg
