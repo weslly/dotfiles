@@ -27,6 +27,7 @@ set showmatch
 set number
 set backspace=indent,eol,start
 set complete-=i
+set completeopt-=preview " Disable preview panel when completing
 set wildmenu
 set formatoptions+=j " Delete comment character when joining commented lines
 set autoread
@@ -43,11 +44,6 @@ set shiftwidth=2
 set expandtab
 set shiftround
 set smarttab
-
-" Scroll
-set scrolloff=1
-set sidescrolloff=5
-" set scrolljump=5
 
 " Search 
 set incsearch
@@ -97,11 +93,12 @@ let g:mapleader= ' '
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
 Plug 'tpope/vim-vinegar'
+Plug 'kana/vim-textobj-user'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-sleuth'
 Plug 'bronson/vim-visual-star-search'
@@ -112,17 +109,26 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vimwiki/vimwiki'
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
 Plug 'zchee/deoplete-jedi', {'for': ['python']}
-Plug 'mattn/emmet-vim', { 'for': ['scss', 'css', 'php.html', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
+Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
+" Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
-Plug 'xtal8/traces.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'brooth/far.vim'
+Plug 'akiyan/vim-textobj-php'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'captbaritone/better-indent-support-for-php-with-html', { 'for': ['php', 'html', 'php.html'] }
 call plug#end()
 " }}}
 
-let g:polyglot_disabled = ['jinja']
+" https://github.com/macvim-dev/macvim/issues/573#issuecomment-342416433
+if has('gui')
+  let g:UltiSnipsUsePythonVersion=2
+endif
 
+let g:gruvbox_italic = 1
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'hard'
 set background=dark
@@ -143,18 +149,21 @@ if has('nvim')
   let g:deoplete#enable_at_startup = 1
 endif
 
+" let g:indentLine_char = '▏'
+
 nnoremap <leader>ev :e $MYVIMRC<cr>
 map <leader>c <c-_><c-_>
 inoremap jj <esc>
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
-nnoremap <silent> <Leader>h :Helptags<cr>
-nnoremap <F3>  :vnew<cr>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile noundofile<cr>
+nnoremap <F3> :vnew<cr>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile noundofile<cr>
+nnoremap <bs> <c-^>
 
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+cnoremap css2 sass-convert -F css -T scss
 
 " Custom AutoCmds {{{
 augroup vimrcEx
@@ -180,7 +189,14 @@ augroup vimrcEx
 
   " I keep forgetting I can't close :help with `q`
   autocmd FileType help map <buffer> q :close<cr>
+augroup END
 
+augroup customHighlights
+  autocmd!
+
+  if !has('gui') && !has('gui_vimr')
+    hi Normal guibg=NONE ctermbg=NONE
+  endif
 augroup END
 
 
@@ -201,6 +217,7 @@ if filereadable(s:vimrc_project)
 endif
 " }}}
 
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
 " Other files {{{
 " plugin/autosession.vim  " Auto-Session Plugin
@@ -213,3 +230,4 @@ endif
 
 
 " vim: fdm=marker:path=~/.config/nvim/**
+

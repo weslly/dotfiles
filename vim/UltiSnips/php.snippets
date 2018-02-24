@@ -1,18 +1,24 @@
 extends php, html, php.wordpress
 
-snippet ?p
+snippet php "<?php ?>" w
 <?php $1 ?>
 endsnippet
 
-snippet ?=
+snippet ?p "<?php ?>" w
+<?php $1 ?>
+endsnippet
+
+snippet pe "<?= ?>" w
 <?= $1 ?>
 endsnippet
 
-snippet pe
-<?= $1 ?>
-endsnippet
-
-snippet ?else
+snippet else
 <?php else: ?>
 endsnippet
 
+snippet mob
+ob_start(); ?>
+$2
+<?php
+$markup['$1'] = ob_get_clean();
+endsnippet

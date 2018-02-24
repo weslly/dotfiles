@@ -22,9 +22,9 @@ zmodules=(
     meta
     custom
     history-substring-search
-    # prompt
+    prompt
     completion
-    ssh
+    s/sh
     spectrum
 )
 
@@ -39,7 +39,7 @@ zmodules=(
 #
 
 # Set your desired prompt here
-# zprompt_theme='gitster'
+zprompt_theme='pure'
 
 #
 # Completion
@@ -93,7 +93,7 @@ zhighlighters=(main brackets cursor)
 #
 
 # Load these ssh identities with the ssh module
-zssh_ids=(id_rsa)
+# zssh_ids=(id_rsa)
 
 
 #

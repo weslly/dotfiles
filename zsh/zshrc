@@ -1,9 +1,9 @@
-export TERM=xterm-256color
 export DISABLE_AUTO_TITLE="true"
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export PAGER='less'
 export LANG=en_US.UTF-8
+export LC_CTYPE=C
 export LC_ALL=en_US.UTF-8
 
 export is_dev=1
@@ -43,7 +43,6 @@ export _Z_NO_COMPLETE_CD=1
 
 # ZPlug
 source ~/.zplug/init.zsh
-
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 
 # ZPlug Modules
@@ -51,28 +50,37 @@ zplug "Eriner/zim", depth:1, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/Eri
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "knu/z", use:"z.sh", depth:1, defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "aaronjamesyoung/aaron-zsh-theme", as:theme
-
 zplug load
-
-ZSH_THEME="aaron"
 
 HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
 
-# Change default zim location
+# export PURE_PROMPT_SYMBOL="▶"
+export PURE_CMD_MAX_EXEC_TIME="59"
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
+alias vvim=/usr/local/bin/vim
 alias vim=$EDITOR
 alias vi=$EDITOR
 
 export HOMEBREW_NO_ANALYTICS=1
 
+alias weechat="env TERM=screen-256color weechat"
 alias flush="sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
+alias xclip='pbcopy'
+alias xsel='pbcopy'
+alias tmx='/usr/local/bin/tmux new-session -A -s main'
 
 bindkey '^P' fzf-cd-widget
 
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+
+eval "$(rbenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
