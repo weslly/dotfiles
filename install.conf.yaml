@@ -6,6 +6,7 @@
 
 - link:
     ~/.tmux.conf: tmux/tmux.conf
+    ~/.zsh-plugins: zsh/plugins
     ~/.zshrc: zsh/zshrc
     ~/.zlogin: zsh/zlogin
     ~/.zimrc: zsh/zimrc

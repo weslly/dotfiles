@@ -21,11 +21,8 @@ zmodules=(
     history-substring-search
     prompt
     completion
-    syntax-highlighting
     archive
 )
-
-    # syntax-highlighting
 
 ###################
 # MODULE SETTINGS #

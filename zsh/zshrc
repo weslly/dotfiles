@@ -53,8 +53,9 @@ eval "$(rbenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
-source ~/.zplug/repos/knu/z/z.sh
+# Plugins
+source ~/.zsh-plugins/z/z.sh
+source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
