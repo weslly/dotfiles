@@ -1,4 +1,3 @@
-export DISABLE_AUTO_TITLE="true"
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export PAGER='less'
@@ -8,54 +7,25 @@ export LC_ALL=en_US.UTF-8
 
 export is_dev=1
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/share/npm/bin:/Library/Frameworks/Mono.framework/Commands:/Users/weslly/.local/bin:$HOME/.cargo/bin
-
-export PATH="/usr/local/opt/qt5/bin:$PATH"
-export PATH="/usr/local/opt/qt/bin:$PATH"
-
-fpath=(
-  '/usr/local/share/zsh/site-functions'
-  $fpath
-  )
-
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 (( $+commands[nvim] )) && export MANPAGER="nvim -c 'set ft=man' -"
-
-path=(
-  /usr/local/{bin,sbin}
-  /usr/local/opt/coreutils/libexec/gnubin
-  /usr/local/opt/python/libexec/bin
-  /usr/local/opt/curl/bin
-  /usr/local/Cellar/git
-  ${HOME}/dotfiles/bin
-  $path
-)
-
-if (( $+commands[yarn] )); then
-  path+=($(yarn global bin))
-fi
-
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 setopt HIST_IGNORE_ALL_DUPS
 setopt autoparamslash
 export _Z_NO_COMPLETE_CD=1
 
-# ZPlug
-source ~/.zplug/init.zsh
+# Change default zim location
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 
-# ZPlug Modules
-zplug "Eriner/zim", depth:1, use:"init.zsh", hook-build:"ln -sf $ZPLUG_REPOS/Eriner/zim ~/.zim"
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-zplug "knu/z", use:"z.sh", depth:1, defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug load
+# Start zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 
 HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
 
 # export PURE_PROMPT_SYMBOL="▶"
 export PURE_CMD_MAX_EXEC_TIME="59"
+export PURE_GIT_PULL=0
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -68,7 +38,7 @@ alias vi=$EDITOR
 export HOMEBREW_NO_ANALYTICS=1
 
 alias weechat="env TERM=screen-256color weechat"
-alias flush="sudo killall -HUP mDNSResponder"
+alias flush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 alias xclip='pbcopy'
@@ -83,4 +53,11 @@ eval "$(rbenv init -)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-export PATH="/usr/local/opt/tcl-tk/bin:$PATH"
+
+source ~/.zplug/repos/knu/z/z.sh
+
+if [[ "$PROFILE_STARTUP" == true ]]; then
+    zprof
+    unsetopt xtrace
+    exec 2>&3 3>&-
+fi

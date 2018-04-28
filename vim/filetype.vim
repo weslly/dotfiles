@@ -1,4 +1,5 @@
-augroup filetypedetect
-  " autocmd! BufNewFile,BufRead *.php set filetype=html.php | set syntax=php
+augroup FileTypeExec
+  if executable('prettier')
+    autocmd FileType scss setlocal formatprg=prettier\ --stdin\ --parser\ scss | setlocal equalprg=prettier\ --stdin\ --parser\ scss
+  endif
 augroup END
-
