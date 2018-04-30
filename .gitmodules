@@ -4,6 +4,12 @@
 [submodule "private"]
 	path = private
 	url = keybase://private/weslly/dotfiles
+[submodule "zsh/plugins/z"]
+	path = zsh/plugins/z
+	url = https://github.com/rupa/z
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
+[submodule "zsh/plugins/fz"]
+	path = zsh/plugins/fz
+	url = https://github.com/changyuheng/fz

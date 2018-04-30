@@ -54,8 +54,12 @@ eval "$(rbenv init -)"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Plugins
+alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --recursive --remote ./ && git submodule foreach git status"
+
 source ~/.zsh-plugins/z/z.sh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/.zsh-plugins/fz/fz.plugin.zsh
+
 
 if [[ "$PROFILE_STARTUP" == true ]]; then
     zprof
