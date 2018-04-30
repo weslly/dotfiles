@@ -7,6 +7,3 @@
 [submodule "zsh/plugins/fast-syntax-highlighting"]
 	path = zsh/plugins/fast-syntax-highlighting
 	url = https://github.com/zdharma/fast-syntax-highlighting
-[submodule "zsh/plugins/z"]
-	path = zsh/plugins/z
-	url = https://github.com/knu/z
