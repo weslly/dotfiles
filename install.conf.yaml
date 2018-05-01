@@ -8,6 +8,7 @@
     ~/.tmux.conf: tmux/tmux.conf
     ~/.zsh-plugins: zsh/plugins
     ~/.zshrc: zsh/zshrc
+    ~/.zprofile: zsh/zprofile
     ~/.zlogin: zsh/zlogin
     ~/.zimrc: zsh/zimrc
     ~/.gitconfig: git/gitconfig
@@ -17,7 +18,6 @@
     ~/.vimrc: vim/init.vim
     ~/.config/nvim: vim
     ~/.config/alacritty: alacritty
-    ~/.config/karabiner: karabiner
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

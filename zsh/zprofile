@@ -1,0 +1,29 @@
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local/bin:/usr/local/sbin
+
+fpath=(
+  '/usr/local/share/zsh/site-functions'
+  $fpath
+  )
+
+path=(
+  /usr/local/{bin,sbin}
+  /usr/local/opt/coreutils/libexec/gnubin
+  /usr/local/opt/python/libexec/bin
+  /usr/local/opt/curl/bin
+  /usr/local/opt/qt5/bin
+  /usr/local/opt/qt/bin
+  /usr/local/opt/tcl-tk/bin
+  /usr/local/share/npm/bin
+  /usr/local/git/bin
+  /usr/local/go/bin
+  /Library/Frameworks/Mono.framework/Commands
+  $HOME/.local/bin
+  $HOME/.cargo/bin
+  ${HOME}/dotfiles/bin
+  $path
+)
+
+# zmodload zsh/zprof
