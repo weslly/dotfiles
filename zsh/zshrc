@@ -1,40 +1,36 @@
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
-export PAGER='less'
 export LANG=en_US.UTF-8
 export LC_CTYPE=C
 export LC_ALL=en_US.UTF-8
-
-export is_dev=1
-
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export MANPAGER="nvim -c 'set ft=man' -"
+export PAGER='less'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-
-setopt HIST_IGNORE_ALL_DUPS
-setopt autoparamslash
-
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+export is_dev=1
 export _Z_NO_COMPLETE_CD=1
-# Change default zim location
-export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
-
-# Start zim
-[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
-
-HISTIGNORE="ls:ls *:cd:cd -:-:clear:pwd;exit:date:* --help"
-
 export PURE_CMD_MAX_EXEC_TIME="59"
+export HOMEBREW_NO_ANALYTICS=1
+
+# ZIM
+export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+[[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
-export HOMEBREW_NO_ANALYTICS=1
+# Zsh Options
+setopt hist_ignore_all_dups share_history append_history hist_expire_dups_first
+setopt auto_param_slash
+setopt correct
+HISTORY_IGNORE='(ls|ls *|cd|cd -|-|clear|pwd;exit|date|* --help)'
 
+# Aliases
 alias vvim=/usr/local/bin/vim
 alias vim=$EDITOR
 alias vi=$EDITOR
-
 alias weechat="env TERM=screen-256color weechat"
 alias flush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -43,9 +39,8 @@ alias xclip='pbcopy'
 alias xsel='pbcopy'
 alias tmx='/usr/local/bin/tmux new-session -A -s main'
 
+# Keys
 bindkey '^P' fzf-cd-widget
-
-export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 
 # eval "$(rbenv init -)"
 rbenv() {

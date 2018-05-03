@@ -18,15 +18,15 @@
 
   # zcompile enabled module autoloaded functions
   for dir in ${ZIM_HOME}/modules/${^zmodules}/functions(/FN); do
-    zrecompile -pq ${dir}.zwc ${dir}/^(_*|prompt_*_setup|*.*)(-.N)
+    zrecompile -pq ${dir}.zwc ${dir}/^(_*|prompt_*_setup|*.*)(-.N) &> /dev/null
   done
 
   # zcompile enabled module scripts
   for file in ${ZIM_HOME}/modules/${^zmodules}/(^*test*/)#*.zsh{,-theme}(.NLk+1); do
-    zrecompile -pq ${file}
+    zrecompile -pq ${file} &> /dev/null
   done
 
-  zrecompile -pq ${ZIM_HOME}/modules/prompt/functions/prompt_pure_setup
+  zrecompile -pq ${ZIM_HOME}/modules/prompt/functions/prompt_pure_setup &> /dev/null
   # zcompile all prompt setup scripts
   #
   # for file in ${ZIM_HOME}/modules/prompt/functions/prompt_*_setup; do
