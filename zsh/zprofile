@@ -26,4 +26,4 @@ path=(
   $path
 )
 
-# zmodload zsh/zprof
+zmodload zsh/zprof

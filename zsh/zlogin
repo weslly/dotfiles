@@ -11,10 +11,10 @@
   autoload -U zrecompile
 
   # zcompile the completion cache; siginificant speedup
-  zrecompile -pq ${ZDOTDIR:-${HOME}}/${zcompdump_file:-.zcompdump}
+  zrecompile -pq ${ZDOTDIR:-${HOME}}/${zcompdump_file:-.zcompdump} &> /dev/null
 
   # zcompile .zshrc
-  zrecompile -pq ${ZDOTDIR:-${HOME}}/.zshrc
+  zrecompile -pq ${ZDOTDIR:-${HOME}}/.zshrc &> /dev/null
 
   # zcompile enabled module autoloaded functions
   for dir in ${ZIM_HOME}/modules/${^zmodules}/functions(/FN); do
