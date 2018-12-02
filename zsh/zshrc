@@ -12,7 +12,6 @@ export is_dev=1
 export _Z_NO_COMPLETE_CD=1
 export PURE_CMD_MAX_EXEC_TIME="59"
 export HOMEBREW_NO_ANALYTICS=1
-export TIPZ_TEXT='💡 '
 
 # ZIM
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
@@ -62,8 +61,6 @@ alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --re
 source ~/.zsh-plugins/z/z.sh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh-plugins/fz/fz.plugin.zsh
-source ~/.zsh-plugins/tipz/tipz.zsh
-
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
