@@ -37,7 +37,7 @@ set formatoptions+=j " Delete comment character when joining commented lines
 set autoread
 set history=1000
 set display+=lastline
-set cursorline
+" set cursorline
 set scroll=5 " number of lines to scroll with ctrl-d/u
 set synmaxcol=500
 set shortmess+=c
