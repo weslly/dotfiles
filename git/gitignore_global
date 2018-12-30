@@ -3,6 +3,9 @@
 patch.diff
 .idea/dataSources
 project/static/admin/.sass-cache
+node_modules
+*.pyc
+*.log
 tags
 tags.lock
 tags.temp

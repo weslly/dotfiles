@@ -41,6 +41,7 @@ set display+=lastline
 set scroll=5 " number of lines to scroll with ctrl-d/u
 set synmaxcol=500
 set shortmess+=c
+set pumheight=10 " autocomplete max height
 
 " Splits
 set splitbelow
@@ -127,29 +128,43 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-Plug 'ncm2/ncm2-tmux'
+" Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-abbrfuzzy'
 Plug 'ncm2/ncm2-cssomni'
 Plug 'ncm2/ncm2-markdown-subscope'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
+
+Plug 'jwalton512/vim-blade'
+Plug 'rizzatti/dash.vim'
 
 if !has('nvim')
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'roxma/nvim-yarp'
 
+" C/C++
+Plug 'Rip-Rip/clang_complete'
+Plug 'vim-scripts/a.vim'
+Plug 'majutsushi/tagbar'
+Plug 'octol/vim-cpp-enhanced-highlight'
+
 call plug#end()
 " }}}
+"
+
+let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
 
 " https://github.com/macvim-dev/macvim/issues/573#issuecomment-342416433
 if has('gui')
@@ -173,12 +188,13 @@ let g:netrw_liststyle = 3
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 noremap Q @q
 nnoremap <leader>ev :e $MYVIMRC<cr>
 map <leader>c <c-_><c-_>
 inoremap jj <esc>
 inoremap <C-U> <C-G>u<C-U>
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <leader>l :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
@@ -226,6 +242,7 @@ augroup vimrcEx
   " I keep forgetting I can't close :help with `q`
   autocmd FileType help map <buffer> q :close<cr>
 
+  " autocmd FileType php,python setlocal keywordprg '\!open dash://'
 
   if executable('prettier')
     autocmd FileType scss setlocal formatprg=prettier\ --stdin\ --parser\ scss
@@ -244,14 +261,14 @@ augroup customHighlights
 augroup END
 
 
-if has('patch-8.0.1238')
-  augroup vimrc-incsearch-highlight
-    autocmd!
-    autocmd CmdlineEnter [/\?] :set hlsearch
-    autocmd CmdlineLeave [/\?] :set nohlsearch
-  augroup END
-endif
-
+" if has('patch-8.0.1238')
+"   augroup vimrc-incsearch-highlight
+"     autocmd!
+"     autocmd CmdlineEnter [/\?] :set hlsearch
+"     autocmd CmdlineLeave [/\?] :set nohlsearch
+"   augroup END
+" endif
+"
 " }}}
 
 " Project specific override {{{

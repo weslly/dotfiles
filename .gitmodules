@@ -10,3 +10,6 @@
 [submodule "zsh/plugins/z"]
 	path = zsh/plugins/z
 	url = https://github.com/rupa/z
+[submodule "zsh/plugins/zsh-nvm"]
+	path = zsh/plugins/zsh-nvm
+	url = https://github.com/lukechilds/zsh-nvm
