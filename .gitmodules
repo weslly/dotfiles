@@ -10,3 +10,6 @@
 [submodule "zsh/plugins/zsh-nvm"]
 	path = zsh/plugins/zsh-nvm
 	url = https://github.com/lukechilds/zsh-nvm
+[submodule "zsh/plugins/z.lua"]
+	path = zsh/plugins/z.lua
+	url = https://github.com/skywind3000/z.lua

@@ -59,7 +59,7 @@ rbenv() {
 # Plugins
 alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --recursive --remote ./ && git submodule foreach git status"
 
-source ~/.zsh-plugins/z/z.sh
+source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh-plugins/fz/fz.plugin.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
