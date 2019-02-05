@@ -1,0 +1,25 @@
+extends html, javascript, css
+
+snippet template
+<template>
+  $1
+</template>
+endsnippet
+
+snippet script
+<script>
+export default {
+  $1
+}
+</script>
+endsnippet
+
+snippet style
+<style scoped lang="scss">
+$1
+</style>
+endsnippet
+
+snippet v-for
+v-for="($1, index) in $2" :key="index"
+endsnippet

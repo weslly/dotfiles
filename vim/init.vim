@@ -99,11 +99,15 @@ endif
 " }}}
 
 let g:python3_host_prog = '/usr/local/bin/python3'
-
 let g:mapleader= ' '
 
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
+if !has('nvim')
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'roxma/nvim-yarp'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
@@ -112,6 +116,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-abolish'
 " Plug 'tpope/vim-sleuth'
 Plug 'bronson/vim-visual-star-search'
 Plug 'wellle/targets.vim'
@@ -128,66 +133,72 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-jedi'
 Plug 'ncm2/ncm2-tagprefix'
 Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-" Plug 'ncm2/ncm2-tmux'
 Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-abbrfuzzy'
 Plug 'ncm2/ncm2-cssomni'
-Plug 'ncm2/ncm2-markdown-subscope'
+" Plug 'ncm2/ncm2-markdown-subscope'
+Plug 'ncm2/ncm2-pyclang'
 
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php'] }
+Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'rizzatti/dash.vim'
+
+" PHP
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 Plug 'jwalton512/vim-blade'
-Plug 'rizzatti/dash.vim'
+" Plug 'airblade/vim-gitgutter'
 
-if !has('nvim')
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'roxma/nvim-yarp'
+" Plug 'storyn26383/vim-vue'
+Plug 'posva/vim-vue'
+" Plug 'Shougo/context_filetype.vim'
+Plug 'digitaltoad/vim-pug', { 'for': ['vue', 'pug'] }
+Plug 'pangloss/vim-javascript'
+Plug 'cakebaker/scss-syntax.vim'
+
+" Plug 'Yggdroot/indentLine'
 
 " C/C++
-Plug 'Rip-Rip/clang_complete'
-Plug 'vim-scripts/a.vim'
+Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'majutsushi/tagbar'
 Plug 'octol/vim-cpp-enhanced-highlight'
-
+Plug 'AndrewRadev/switch.vim'
 call plug#end()
 " }}}
 "
 
-let g:clang_library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+" Colorscheme
+set background=dark
+colorscheme base16-gruvbox-dark-hard
 
-" https://github.com/macvim-dev/macvim/issues/573#issuecomment-342416433
-if has('gui')
-  let g:UltiSnipsUsePythonVersion=2
-endif
-let g:AutoPairsMultilineClose = 0
-
+" Plugin config
 let g:gruvbox_italic = 0
 let g:gruvbox_invert_selection = 0
 let g:gruvbox_contrast_dark = 'hard'
-set background=dark
-colorscheme gruvbox
-
-
-let g:UltsSnipsExpandTrigger='<tab>'
-
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
-
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
+let g:ncm2_pyclang#library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
+let g:AutoPairsMultilineClose = 0
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
+let g:UltsSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" (Re)maps
+nnoremap <silent> <leader>h :call CurtineIncSw()<CR>
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 noremap Q @q
 nnoremap <leader>ev :e $MYVIMRC<cr>
@@ -212,12 +223,15 @@ inoremap ! !<c-g>u
 inoremap , ,<c-g>u
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-cnoremap css2 sass-convert -F css -T scss
 command! Reveal :silent exec "!open -R %"
 
 " Custom AutoCmds {{{
 augroup vimrcEx
   autocmd!
+
+  " Fix quickfix location when tagbar is open
+  autocmd FileType qf wincmd J
+
   " Strip trailing whitespace on save
   autocmd FileType python,php autocmd BufWritePre <buffer> %s/\s\+$//e
 
@@ -249,6 +263,7 @@ augroup vimrcEx
     " autocmd BufWritePre *.scss norm gg=G
   endif
 
+  autocmd FileType vue syntax sync fromstart
 
 augroup END
 
@@ -261,24 +276,12 @@ augroup customHighlights
 augroup END
 
 
-" if has('patch-8.0.1238')
-"   augroup vimrc-incsearch-highlight
-"     autocmd!
-"     autocmd CmdlineEnter [/\?] :set hlsearch
-"     autocmd CmdlineLeave [/\?] :set nohlsearch
-"   augroup END
-" endif
-"
-" }}}
-
 " Project specific override {{{
 let s:vimrc_project = $PWD . '/.local.vim'
 if filereadable(s:vimrc_project)
   execute 'source ' . s:vimrc_project
 endif
 " }}}
-
-let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
 " Other files {{{
 " plugin/autosession.vim  " Auto-Session Plugin

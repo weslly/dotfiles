@@ -27,3 +27,5 @@ path=(
 )
 
 zmodload zsh/zprof
+
+export PATH="$HOME/.cargo/bin:$PATH"
