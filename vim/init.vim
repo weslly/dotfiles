@@ -39,16 +39,17 @@ set history=1000
 set display+=lastline
 " set cursorline
 set scroll=5 " number of lines to scroll with ctrl-d/u
-set synmaxcol=500
+set synmaxcol=1500
 set shortmess+=c
 set pumheight=10 " autocomplete max height
+set lazyredraw
 
 " Splits
 set splitbelow
 set splitright
 
 " Indent
-set autoindent
+" set autoindent
 set shiftwidth=2
 set expandtab
 set shiftround
@@ -148,30 +149,33 @@ Plug 'morhetz/gruvbox'
 Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'rizzatti/dash.vim'
 
 " PHP
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-Plug 'captbaritone/better-indent-support-for-php-with-html'
+" Plug 'captbaritone/better-indent-support-for-php-with-html'
 
 Plug 'jwalton512/vim-blade'
 " Plug 'airblade/vim-gitgutter'
 
-" Plug 'storyn26383/vim-vue'
 Plug 'posva/vim-vue'
-" Plug 'Shougo/context_filetype.vim'
-Plug 'digitaltoad/vim-pug', { 'for': ['vue', 'pug'] }
 Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'vim-scripts/Sass'
+" Plug 'artemave/vjs'
+Plug 'iloginow/vim-stylus'
 
 " Plug 'Yggdroot/indentLine'
 
+Plug 'tpope/vim-fugitive'
 " C/C++
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'majutsushi/tagbar'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'AndrewRadev/switch.vim'
+Plug 'RRethy/vim-hexokinase'
+Plug 'kalekundert/vim-prima-facie'
+Plug 'meain/vim-package-info', { 'do': 'npm install' }
 call plug#end()
 " }}}
 "
@@ -179,11 +183,9 @@ call plug#end()
 " Colorscheme
 set background=dark
 colorscheme base16-gruvbox-dark-hard
+" colorscheme gruvbox
 
 " Plugin config
-let g:gruvbox_italic = 0
-let g:gruvbox_invert_selection = 0
-let g:gruvbox_contrast_dark = 'hard'
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
@@ -275,6 +277,12 @@ augroup customHighlights
   endif
 augroup END
 
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " Project specific override {{{
 let s:vimrc_project = $PWD . '/.local.vim'

@@ -61,5 +61,11 @@ alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --re
 
 source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source ~/.zsh-plugins/fz/fz.plugin.zsh
+# source ~/.zsh-plugins/fz/fz.plugin.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
+
+###-tns-completion-start-###
+if [ -f /Users/weslly/.tnsrc ]; then 
+    source /Users/weslly/.tnsrc 
+fi
+###-tns-completion-end-###
