@@ -18,7 +18,8 @@
     ~/.vimrc: vim/init.vim
     ~/.config/nvim: vim
     ~/.config/alacritty: alacritty
-    ~/.ctags: ctags
+    ~/.config/vifm: vifm
+    ~/.ctags.d: ctags
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

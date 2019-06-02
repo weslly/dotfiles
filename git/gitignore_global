@@ -1,6 +1,7 @@
 *~
 .DS_Store
 patch.diff
+profile.log
 .ignore
 .idea/dataSources
 project/static/admin/.sass-cache

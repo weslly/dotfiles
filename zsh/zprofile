@@ -5,6 +5,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/opt/local
 
 fpath=(
   '/usr/local/share/zsh/site-functions'
+  '/Users/weslly/.zsh-plugins/common-prompt'
   $fpath
   )
 
@@ -27,8 +28,6 @@ path=(
   $HOME/Library/Python/3.7/bin
   $path
 )
-
-zmodload zsh/zprof
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home

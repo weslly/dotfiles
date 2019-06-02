@@ -19,7 +19,8 @@ if !has('nvim') && exists('&ttymouse')
 endif
 
 if has('gui')
-  set guioptions=
+  set guifont=mononokiNerdFontComplete-Regular:h13
+  " set guioptions=
 endif
 
 set clipboard=unnamed
@@ -73,7 +74,7 @@ endif
 
 " Statusline
 set laststatus=2
-set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%\ "
+" set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%\ "
 
 set path+=**
 set wildignore+=*.swp,*.bak
@@ -87,7 +88,7 @@ set wildignore+=*.tar.*
 set undofile
 set undodir=/tmp/
 set backupdir=~/.local/share/nvim/backup
-set directory=~/.local/share/nvim/swap
+set directory=~/.local/share/nvim/swap,/tmp/
 
 if has('folding')
   set foldmethod=indent
@@ -99,7 +100,6 @@ if has('path_extra')
 endif
 " }}}
 
-let g:python3_host_prog = '/usr/local/bin/python3'
 let g:mapleader= ' '
 
 " Vim-Plug {{{
@@ -109,9 +109,10 @@ if !has('nvim')
 endif
 Plug 'roxma/nvim-yarp'
 
+" Essentials
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-vinegar'
 Plug 'kana/vim-textobj-user'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
@@ -120,14 +121,16 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
 " Plug 'tpope/vim-sleuth'
 Plug 'bronson/vim-visual-star-search'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-vinegar'
+
 Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
-
 Plug 'jiangmiao/auto-pairs'
-Plug 'vimwiki/vimwiki'
-Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
-Plug 'davidhalter/jedi-vim', {'for': ['python']}
+" Plug 'vimwiki/vimwiki'
+" Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
 
+" NCM 2
 Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-ultisnips'
 Plug 'ncm2/ncm2-path'
@@ -137,8 +140,8 @@ Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-abbrfuzzy'
 Plug 'ncm2/ncm2-cssomni'
-" Plug 'ncm2/ncm2-markdown-subscope'
-Plug 'ncm2/ncm2-pyclang'
+
+Plug 'tpope/vim-fugitive'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -146,44 +149,39 @@ Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'ht
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
 Plug 'w0rp/ale'
-Plug 'editorconfig/editorconfig-vim'
+
+" Bells and whistles
+" Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+" Plug 'airblade/vim-gitgutter'
+
+Plug 'ludovicchabant/vim-gutentags'
+" Plug 'jsfaint/gen_tags.vim'
 
 " PHP
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
-" Plug 'captbaritone/better-indent-support-for-php-with-html'
-
-Plug 'jwalton512/vim-blade'
-" Plug 'airblade/vim-gitgutter'
 
 Plug 'posva/vim-vue'
+Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'vim-scripts/Sass'
-" Plug 'artemave/vjs'
-Plug 'iloginow/vim-stylus'
+Plug 'vifm/vifm.vim'
 
-" Plug 'Yggdroot/indentLine'
-
-Plug 'tpope/vim-fugitive'
 " C/C++
-Plug 'ericcurtin/CurtineIncSw.vim'
-Plug 'majutsushi/tagbar'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'AndrewRadev/switch.vim'
-Plug 'RRethy/vim-hexokinase'
-Plug 'kalekundert/vim-prima-facie'
-Plug 'meain/vim-package-info', { 'do': 'npm install' }
+" Plug 'ericcurtin/CurtineIncSw.vim'
 call plug#end()
 " }}}
 "
 
 " Colorscheme
 set background=dark
-colorscheme base16-gruvbox-dark-hard
-" colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
 " Plugin config
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
@@ -191,13 +189,29 @@ let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
-let g:ncm2_pyclang#library_path='/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib'
 let g:AutoPairsMultilineClose = 0
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 
 let g:UltsSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+
+let g:gitgutter_sign_added='+'
+let g:gitgutter_sign_modified='●'
+let g:gitgutter_sign_removed='-'
+let g:gitgutter_sign_removed_first_line=''
+let g:gitgutter_sign_modified_removed='●-'
+
+let g:tagbar_type_vue = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'f:functions',
+      \ 'c:classes',
+      \ 'm:methods',
+      \ 'C:constants',
+      \ 'v:global variables',
+      \ 'g:generators'
+      \ ]}
 
 " (Re)maps
 nnoremap <silent> <leader>h :call CurtineIncSw()<CR>
@@ -208,7 +222,7 @@ map <leader>c <c-_><c-_>
 inoremap jj <esc>
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <leader>l :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-noremap <C-p> :Files<cr>
+" noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
 nnoremap <F3> :vnew<cr>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile noundofile<cr>
@@ -224,15 +238,33 @@ inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 inoremap , ,<c-g>u
 
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+" nmap <silent> <leader>k :NERDTreeToggle<cr>
+" nmap <silent> <leader>m :NERDTreeFind<cr>
+
+nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
+
+" let NERDTreeHijackNetrw=1
+" let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
+" let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
+" let NERDTreeNodeDelimiter = "\u263a" " smiley face
+" let NERDTreeDirArrowExpandable = ' '
+" let NERDTreeDirArrowCollapsible = ' '
+
+" if exists('g:loaded_webdevicons')
+"   call webdevicons#refresh()
+" endif
+
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 command! Reveal :silent exec "!open -R %"
 
 " Custom AutoCmds {{{
 augroup vimrcEx
   autocmd!
-
-  " Fix quickfix location when tagbar is open
-  autocmd FileType qf wincmd J
 
   " Strip trailing whitespace on save
   autocmd FileType python,php autocmd BufWritePre <buffer> %s/\s\+$//e
@@ -258,31 +290,16 @@ augroup vimrcEx
   " I keep forgetting I can't close :help with `q`
   autocmd FileType help map <buffer> q :close<cr>
 
-  " autocmd FileType php,python setlocal keywordprg '\!open dash://'
-
-  if executable('prettier')
-    autocmd FileType scss setlocal formatprg=prettier\ --stdin\ --parser\ scss
-    " autocmd BufWritePre *.scss norm gg=G
-  endif
-
   autocmd FileType vue syntax sync fromstart
-
 augroup END
 
 augroup customHighlights
   autocmd!
-
   if !has('gui') && !has('gui_vimr')
     hi Normal guibg=NONE ctermbg=NONE
+    hi SignColumn guibg=NONE ctermbg=NONE
   endif
 augroup END
-
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
 
 " Project specific override {{{
 let s:vimrc_project = $PWD . '/.local.vim'

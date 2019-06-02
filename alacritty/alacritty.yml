@@ -27,8 +27,8 @@ window:
     x: 2
     y: 2
 
-  decorations: true
-
+  dynamic_padding: true
+  decorations: buttonless
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
@@ -40,43 +40,26 @@ draw_bold_text_with_bright_colors: false
 font:
   # The normal (roman) font face to use.
   normal:
-    family: ubuntu mono
+    family: mononoki nerd font
 
   bold:
-    family: ubuntu mono
+    family: mononoki nerd font
     style: Bold
 
   italic:
-    family: ubuntu mono
+    family: mononoki nerd font
     style: Italic
 
   # Point size of the font
   size: 13.0
 
-  # Offset is the extra space around each character. offset.y can be thought of
-  # as modifying the linespacing, and offset.x as modifying the letter spacing.
-  offset:
-    x: 0.5
-    y: 0.5
-
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increase the x offset to move the glyph to
-  # the right, increase the y offset to move the glyph upward.
-  glyph_offset:
-    x: 0.0
-    y: 0.0
-
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 # Should display the render timer
 render_timer: false
-
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
 
 #Colors (Gruvbox dark) {{{
 colors:
@@ -311,6 +294,7 @@ key_bindings:
 mouse:
   double_click: { threshold: 300 }
   triple_click: { threshold: 300 }
+  hide_when_typing: false
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
@@ -318,9 +302,6 @@ selection:
 
 dynamic_title: true
 
-cursor_style: Block
-
-hide_cursor_when_typing: false
 
 # Live config reload (changes require restart)
 live_config_reload: true

@@ -1,16 +1,10 @@
-" FZF
-"
-let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.map" --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
+" let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.map" --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
+let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --no-ignore-vcs --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
 
-let g:fzf_files_options = $FZF_CTRL_T_OPTS
+" let g:fzf_files_options = $FZF_CTRL_T_OPTS
 " let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_commits_log_options = substitute(system("git config --get alias.l | awk '{$1=\"\"; print $0;}'"), '\n\+$', '', '')
 let g:fzf_history_dir = '~/.fzf-history'
-
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
 function! s:ag_to_qf(line) abort
   let parts = split(a:line, ':')
@@ -38,28 +32,6 @@ function! s:ag_handler(lines) abort
   endif
 endfunction
 
-command! Plugs call fzf#run({
-  \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-  \ 'options': '--delimiter / --nth -1',
-  \ 'sink':    'Explore'})
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --vimgrep --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
-
-command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --color %s',
-\                   escape(empty(<q-args>) ? '"^(?=.)"' : <q-args>, '\')),
-\ 'sink*':    function('<sid>ag_handler'),
-\ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-\            '--color hl:68,hl+:110',
-\ 'down':    '50%'
-\ })
-
 command! -nargs=* Todo call fzf#run({
 \ 'source':  printf('ag --nogroup --column --color -i \(FIXME\|TODO\|XXX\): %s',
 \                   escape(empty(<q-args>) ? '' : <q-args>, '\')),
@@ -70,39 +42,35 @@ command! -nargs=* Todo call fzf#run({
 \ 'down':    '50%'
 \ })
 
+function! Fzf_files_with_dev_icons()
+  let l:fzf_files_options = ' -m --preview "bat --color always --map-syntax vue:html --theme=1337 --style numbers {2..} | head -'.&lines.'"'
 
-
-" Files + devicons
-function! Fzf_files_with_dev_icons(command)
-  let l:fzf_files_options = '--preview "bat --color always --style numbers {2..} | head -'.&lines.'"'
-   function! s:edit_devicon_prepended_file(item)
-    let l:file_path = a:item[4:-1]
-    execute 'silent e' l:file_path
+  function! s:edit_devicon_prepended_file(items)
+    let items = a:items
+    let i = 1
+    let ln = len(items)
+    while i < ln
+      let item = items[i]
+      let parts = split(item, ' ')
+      let file_path = get(parts, 1, '')
+      let items[i] = file_path
+      let i += 1
+    endwhile
+    call s:Sink(items)
   endfunction
-   call fzf#run({
-        \ 'source': a:command.' | devicon-lookup',
-        \ 'sink':   function('s:edit_devicon_prepended_file'),
-        \ 'options': '-m ' . l:fzf_files_options,
-        \ 'down':    '40%' })
+
+  let opts = fzf#wrap({})
+  let opts.source = $FZF_DEFAULT_COMMAND .' | devicon-lookup'
+  let s:Sink = opts['sink*']
+  let opts['sink*'] = function('s:edit_devicon_prepended_file')
+  let opts.down = '30%'
+  let opts.options .= l:fzf_files_options
+  call fzf#run(opts)
 endfunction
-"  function! Fzf_git_diff_files_with_dev_icons()
-"   let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..} | sed 1,4d; bat --color always --style numbers {3..}) | head -'.&lines.'\""'
-"    function! s:edit_devicon_prepended_file_diff(item)
-"     echom a:item
-"     let l:file_path = a:item[7:-1]
-"     echom l:file_path
-"     let l:first_diff_line_number = system("git diff -U0 ".l:file_path." | rg '^@@.*\+' -o | rg '[0-9]+' -o | head -1")
-"      execute 'silent e' l:file_path
-"     execute l:first_diff_line_number
-"   endfunction
-"    call fzf#run({
-"         \ 'source': 'git -c color.status=always status --short --untracked-files=all | devicon-lookup',
-"         \ 'sink':   function('s:edit_devicon_prepended_file_diff'),
-"         \ 'options': '-m ' . l:fzf_files_options,
-"         \ 'down':    '40%' })
-" endfunction
 
  " Open fzf Files " Open fzf Files
-map <C-f> :call Fzf_files_with_dev_icons($FZF_DEFAULT_COMMAND)<CR>
+map <C-p> :call Fzf_files_with_dev_icons()<CR>
+" map <C-p> :call FZFWithDevIcons()<CR>
+map <C-f> :Files<CR>
 " map <C-d> :call Fzf_git_diff_files_with_dev_icons()<CR> " :GFiles?
 " map <C-g> :call Fzf_files_with_dev_icons("git ls-files \| uniq")<CR> " :GFiles

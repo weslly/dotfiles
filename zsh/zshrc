@@ -5,14 +5,17 @@ export LC_CTYPE=C
 export LC_ALL=en_US.UTF-8
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export MANPAGER="nvim -c 'set ft=man' -"
-export PAGER='less'
+export PAGER='bat -p'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+# export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 export is_dev=1
 export _Z_NO_COMPLETE_CD=1
 export PURE_CMD_MAX_EXEC_TIME="59"
 export HOMEBREW_NO_ANALYTICS=1
 export NVM_LAZY_LOAD=true
+export _ZL_NO_CHECK=1
+
+# zmodload zsh/zprof
 
 # ZIM
 export ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
@@ -41,10 +44,11 @@ alias xsel='pbcopy'
 alias tmx='/usr/local/bin/tmux new-session -A -s main'
 alias :q='exit'
 alias osu='mv ~/Downloads/*.osz /Applications/osu\!.app/drive_c/Program\ Files/osu\!/songs'
-unalias ls
+alias f="vifm ."
+# unalias ls
 
 ls() {
-  exa "$@"
+  lsd "$@"
 }
 
 # Keys
@@ -61,11 +65,4 @@ alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --re
 
 source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-# source ~/.zsh-plugins/fz/fz.plugin.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
-
-###-tns-completion-start-###
-if [ -f /Users/weslly/.tnsrc ]; then 
-    source /Users/weslly/.tnsrc 
-fi
-###-tns-completion-end-###
