@@ -14,17 +14,11 @@ if exists('&termguicolors')
   set termguicolors
 endif
 
-if !has('nvim') && exists('&ttymouse')
-  set ttymouse=xterm2
-endif
-
 if has('gui')
   set guifont=mononokiNerdFontComplete-Regular:h13
-  " set guioptions=
 endif
 
 set clipboard=unnamed
-set mouse=a
 set hidden
 set foldenable
 set virtualedit=block
@@ -38,57 +32,43 @@ set formatoptions+=j " Delete comment character when joining commented lines
 set autoread
 set history=1000
 set display+=lastline
-" set cursorline
 set scroll=5 " number of lines to scroll with ctrl-d/u
 set synmaxcol=1500
 set shortmess+=c
 set pumheight=10 " autocomplete max height
 set lazyredraw
-
-" Splits
+set laststatus=2
 set splitbelow
 set splitright
-
-" Indent
 " set autoindent
 set shiftwidth=2
 set expandtab
 set shiftround
 set smarttab
-
-" Search 
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
+
+set path+=**
+set wildignore+=*.swp,*.bak,*.pyc,*.min.*,bundle.*
+set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
+set wildignore+=*/vendor/*,*/dist/*,*/node_modules/*,*/bower_components/*
+set wildignore+=tags,cscope.*
+
+set undofile
+set undodir=/tmp/
+set backupdir=~/.local/share/nvim/backup
+set directory=~/.local/share/nvim/swap,/tmp/
 
 if exists('&inccommand')
   set inccommand=split
 endif
 
 if executable('rg')
-  " set grepprg=ag\ --nogroup\ --column\ --vimgrep
   set grepprg=rg\ -H\ --no-heading\ --vimgrep
   set grepformat=%f:%l:%c:%m
 endif
-
-" Statusline
-set laststatus=2
-" set statusline=%<\ %f\ %m%r%w%=%y\ \ %l,%-3c\ %p%%\ "
-
-set path+=**
-set wildignore+=*.swp,*.bak
-set wildignore+=*.pyc,*.min.*,bundle.*
-set wildignore+=*/.git/**/*,*/.hg/**/*,*/.svn/**/*
-set wildignore+=*/min/*,*/vendor/*,*/dist/*
-set wildignore+=*/node_modules/*,*/bower_components/*
-set wildignore+=tags,cscope.*
-set wildignore+=*.tar.*
-
-set undofile
-set undodir=/tmp/
-set backupdir=~/.local/share/nvim/backup
-set directory=~/.local/share/nvim/swap,/tmp/
 
 if has('folding')
   set foldmethod=indent
@@ -102,14 +82,18 @@ endif
 
 let g:mapleader= ' '
 
+if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+  echo "Downloading junegunn/vim-plug to manage plugins..."
+  silent !mkdir -p ~/.config/nvim/autoload/
+  silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+endif
+
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 if !has('nvim')
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'roxma/nvim-yarp'
-
-" Essentials
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -119,16 +103,15 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
-" Plug 'tpope/vim-sleuth'
 Plug 'bronson/vim-visual-star-search'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-vinegar'
-
+Plug 'tpope/vim-fugitive'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-" Plug 'vimwiki/vimwiki'
-" Plug 'lepture/vim-jinja', {'for': ['jinja', 'jinja2', 'html', 'jinja.html']}
+Plug 'vimwiki/vimwiki'
 
 " NCM 2
 Plug 'ncm2/ncm2'
@@ -141,9 +124,6 @@ Plug 'ncm2/ncm2-html-subscope'
 Plug 'ncm2/ncm2-abbrfuzzy'
 Plug 'ncm2/ncm2-cssomni'
 
-Plug 'tpope/vim-fugitive'
-
-Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
 Plug 'SirVer/ultisnips'
@@ -151,17 +131,8 @@ Plug 'honza/vim-snippets'
 Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
 
-" Bells and whistles
-" Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
-Plug 'ryanoasis/vim-devicons'
 Plug 'itchyny/lightline.vim'
-" Plug 'airblade/vim-gitgutter'
 
-Plug 'ludovicchabant/vim-gutentags'
-" Plug 'jsfaint/gen_tags.vim'
-
-" PHP
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
 
@@ -170,9 +141,6 @@ Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'vifm/vifm.vim'
-
-" C/C++
-" Plug 'ericcurtin/CurtineIncSw.vim'
 call plug#end()
 " }}}
 "
@@ -202,20 +170,7 @@ let g:gitgutter_sign_removed='-'
 let g:gitgutter_sign_removed_first_line=''
 let g:gitgutter_sign_modified_removed='●-'
 
-let g:tagbar_type_vue = {
-      \ 'ctagstype': 'javascript',
-      \ 'kinds': [
-      \ 'f:functions',
-      \ 'c:classes',
-      \ 'm:methods',
-      \ 'C:constants',
-      \ 'v:global variables',
-      \ 'g:generators'
-      \ ]}
-
 " (Re)maps
-nnoremap <silent> <leader>h :call CurtineIncSw()<CR>
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
 noremap Q @q
 nnoremap <leader>ev :e $MYVIMRC<cr>
 map <leader>c <c-_><c-_>
@@ -241,23 +196,9 @@ inoremap , ,<c-g>u
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 
-" nmap <silent> <leader>k :NERDTreeToggle<cr>
-" nmap <silent> <leader>m :NERDTreeFind<cr>
-
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
-
-" let NERDTreeHijackNetrw=1
-" let NERDTreeDirArrowExpandable = "\u00a0" " make arrows invisible
-" let NERDTreeDirArrowCollapsible = "\u00a0" " make arrows invisible
-" let NERDTreeNodeDelimiter = "\u263a" " smiley face
-" let NERDTreeDirArrowExpandable = ' '
-" let NERDTreeDirArrowCollapsible = ' '
-
-" if exists('g:loaded_webdevicons')
-"   call webdevicons#refresh()
-" endif
 
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 command! Reveal :silent exec "!open -R %"

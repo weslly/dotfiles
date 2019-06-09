@@ -43,7 +43,7 @@ alias xclip='pbcopy'
 alias xsel='pbcopy'
 alias tmx='/usr/local/bin/tmux new-session -A -s main'
 alias :q='exit'
-alias osu='mv ~/Downloads/*.osz /Applications/osu\!.app/drive_c/Program\ Files/osu\!/songs'
+# alias osu='mv ~/Downloads/*.osz /Applications/osu\!.app/drive_c/Program\ Files/osu\!/songs'
 alias f="vifm ."
 # unalias ls
 
@@ -66,3 +66,6 @@ alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --re
 source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
