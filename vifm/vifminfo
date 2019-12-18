@@ -9,10 +9,14 @@
 	/Users/weslly/bin/
 	..
 1553469444
+'c
+	/Users/weslly/Projects/notoriun/eleicoes
+	node_modules
+1561326001
 'h
 	/Users/weslly/
 	..
-1553469444
+1561325960
 
 # Bookmarks:
 
@@ -26,204 +30,48 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/Users/weslly/Projects/notoriun/awesome-map/src
+d/Users/weslly/Projects/notoriun/eleicoes/src
+	assets
+1
+d/Users/weslly/Projects/notoriun/eleicoes/src/assets
+	css
+1
+d/Users/weslly/Projects/notoriun/eleicoes/src/assets/css
+	custom.scss
+2
+d/Users/weslly
+	Music
+8
+d/Users/weslly/Projects/notoriun/eleicoes
+	dist
+3
+d/Users/weslly/Projects/notoriun/eleicoes/dist
+	..
+0
+d/Users/weslly/Projects/notoriun/eleicoes
+	..
+0
+d/Users/weslly/Projects/notoriun
+	..
+0
+d/Users/weslly/Projects/notoriun/eleicoes/src/components/global
+	..
+0
+d/Users/weslly/Projects/notoriun/eleicoes/src/components
+	..
+0
+d/Users/weslly/Projects/notoriun/eleicoes/src
 	pluggables
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src/pluggables
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	nls
-4
-d/Users/weslly/Projects/notoriun/awesome-map/src/nls
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	model
 3
-d/Users/weslly/Projects/notoriun/awesome-map/src/model
+d/Users/weslly/Projects/notoriun/eleicoes/src/pluggables
 	..
 0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	helper
-2
-d/Users/weslly/Projects/notoriun/awesome-map/src/helper
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	components
-1
-d/Users/weslly/Projects/notoriun/awesome-map/src/components
-	Toc
-5
-d/Users/weslly/Projects/notoriun/awesome-map/src/components/Toc
-	item
-3
-d/Users/weslly/Projects/notoriun/awesome-map/src/components/Toc/item
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src/components/Toc
-	BulmaTree
-1
-d/Users/weslly/Projects/notoriun/awesome-map/src/components/Toc/BulmaTree
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src/components/Toc
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src/components
-	Toc
-5
-d/Users/weslly
-	Downloads
-4
-d/Users/weslly/Downloads
-	..
-0
-d/Users/weslly
-	Desktop
-2
-d/Users/weslly/Desktop
-	..
-0
-d/Users/weslly
-	dotfiles
-15
-d/Users/weslly/dotfiles
-	zsh
-8
-d/Users/weslly/dotfiles/zsh
-	zshrc
-5
-d/Users/weslly
-	Public
-11
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	themes
-8
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	AppDev.vue
-9
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	pluggables
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src/pluggables
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	helper
-2
-d/Users/weslly/Projects/notoriun/awesome-map/src/helper
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	components
-1
-d/Users/weslly/Projects/notoriun/awesome-map/src/components
-	Test.vue
-7
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	AppDev.vue
-9
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	themes
-8
-d/Users/weslly/Projects/notoriun/awesome-map/src/themes
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	themes
-8
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	themes
-8
-d/Users/weslly/Projects/notoriun/awesome-map/src/themes
-	bulma.config.scss
-1
-d/Users/weslly/Projects/notoriun/awesome-map
-	src
-6
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	themes
-8
-d/Users/weslly/Projects/notoriun/awesome-map/src/themes
-	..
-0
-d/Users/weslly/Projects/notoriun/awesome-map/src
-	AppDev.vue
-9
-d/Users/weslly/Projects/notoriun/awesome-map
-	profile.log
-15
-d/Users/weslly/dotfiles
-	zsh
-8
-d/Users/weslly
-	Passwords.kdbx
-17
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/generic
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src
-	themes
-6
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/themes
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src
-	override
-3
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/override
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src
+d/Users/weslly/Projects/notoriun/eleicoes/src
 	components
 2
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components
-	viewer
-5
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/viewer
-	MapViewer.vue
-5
+d/Users/weslly/Projects/notoriun/eleicoes/src/components
+	..
+0
 d/Users/weslly/Projects/notoriun/eleicoes/src
 	assets
 1
@@ -231,101 +79,257 @@ d/Users/weslly/Projects/notoriun/eleicoes/src/assets
 	..
 0
 d/Users/weslly/Projects/notoriun/eleicoes/src
-	pluggables
-4
-d/Users/weslly/Projects/notoriun/eleicoes/src/components/global
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src/components
+	utils
+6
+d/Users/weslly/Projects/notoriun/eleicoes/src/utils
 	..
 0
 d/Users/weslly/Projects/notoriun/eleicoes/src
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes
-	src
-4
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	settings.json
-12
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/generic
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components
-	home
-2
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/home
-	Home.vue
-2
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/viewer/admin
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/viewer
-	GenericActionList.vue
-3
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components
-	viewer
-5
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/viewer
-	Root.vue
-5
-d/Users/weslly/Projects/notoriun/eleicoes/src/components/global
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src/components
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	helper
-3
-d/Users/weslly/Projects/notoriun/eleicoes/src/helper
-	settings.js
+	utils
+6
+d/Users/weslly/Projects/notoriun/eleicoes/src/utils
+	customCss.js
 1
-d/Users/weslly/Projects/notoriun/eleicoes/src/store
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	settings.json
-11
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/generic
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/components
-	..
-0
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src
-	store
-5
-d/Users/weslly/Projects/notoriun/sefaz-salvador/src/store
-	index.js
-2
 d/Users/weslly
-	Library
-6
-d/Users/weslly/Library
-	Calendars
-11
-d/Users/weslly/Library/Calendars
+	Dropbox
+5
+d/Users/weslly/Dropbox
+	Photos
+16
+d/Users/weslly/Dropbox/Photos
+	wallpapers
+3
+d/Users/weslly/Dropbox/Photos/wallpapers
+	APPOWS4.jpg
+10
+d/Users/weslly
+	Dropbox
+5
+d/Users/weslly/Dropbox
+	Photos
+16
+d/Users/weslly/Dropbox/Photos
+	wallpapers
+3
+d/Users/weslly/Dropbox/Photos/wallpapers
+	APPOWS6.jpg
+12
+d/Users/weslly
+	Dropbox
+5
+d/Users/weslly/Dropbox
+	Photos
+16
+d/Users/weslly/Dropbox/Photos
+	wallpapers
+3
+d/Users/weslly/Dropbox/Photos/wallpapers
+	Appows_2.jpg
+25
+d/Users/weslly
+	Dropbox
+5
+d/Users/weslly/Dropbox
+	Photos
+16
+d/Users/weslly/Dropbox/Photos
+	wallpapers
+3
+d/Users/weslly
+	Dropbox
+5
+d/Users/weslly/Projects/notoriun/eleicoes
 	..
 0
-d/Users/weslly/Library
-	Calendars
-11
-d/Users/weslly/Projects/notoriun/eleicoes
-	src
-4
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	views
-6
-d/Users/weslly/Projects/notoriun/eleicoes/src/views
+d/Users/weslly/dotfiles/vim
 	..
 0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	views
-6
-d/Users/weslly/Projects/notoriun/eleicoes
-	src
+d/Users/weslly/dotfiles
+	osx.sh
+15
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command/geocode
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	sefaz
 4
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	geocode
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command/geocode
+	find.js
+1
+d/Users/weslly/Projects/notoriun/gisgestao
+	server
+9
+d/Users/weslly/Projects/notoriun/gisgestao/server
+	module
+12
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	sefaz
+4
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server
+	module
+12
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	service
+5
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/service
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	sefaz
+4
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz/command
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/sefaz
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	service
+5
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/service
+	command
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/service/command
+	util
+3
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/service/command/util
+	print.js
+3
+d/Users/weslly/Projects/notoriun/awesome-map-test
+	dist
+3
+d/Users/weslly/Projects/notoriun/awesome-map-test/dist
+	..
+0
+d/Users/weslly/Projects/notoriun/awesome-map-test
+	build
+1
+d/Users/weslly/Projects/notoriun/awesome-map-test/build
+	..
+0
+d/Users/weslly/Projects/notoriun/awesome-map-test
+	..
+0
+d/Users/weslly/Projects/notoriun
+	awesome-map-test
+2
+d/Users/weslly/Projects/notoriun/awesome-map-test
+	node_modules
+5
+d/Users/weslly/Projects/notoriun/awesome-map-test/node_modules
+	arcgis-js-api
+33
+d/Users/weslly/Projects/notoriun/awesome-map-test/node_modules/arcgis-js-api
+	core
+2
+d/Users/weslly/Projects/notoriun/awesome-map-test/node_modules/arcgis-js-api/core
+	tsSupport
+5
+d/Users/weslly/Projects/notoriun/awesome-map-test/node_modules/arcgis-js-api/core/tsSupport
+	declareExtendsHelper.js
+3
+d/Users/weslly/Projects/nonpareil
+	..
+0
+d/Users/weslly/Projects/akiguia/project/models
+	..
+0
+d/Users/weslly/Projects/akiguia/project
+	helpers
+5
+d/Users/weslly/Projects/akiguia/project/helpers
+	context_processors.py
+3
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy
+	dist
+1
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/dist
+	components
+2
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/dist/components
+	input
+11
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/dist/components/input
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/dist/components
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/dist
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules
+	buefy
+58
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy
+	src
+2
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/src
+	components
+1
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/src/components
+	input
+11
+d/Users/weslly/Projects/notoriun/sefaz-teste/node_modules/buefy/src/components/input
+	Input.vue
+3
+d/Users/weslly/Projects/notoriun/bamin
+	src
+3
+d/Users/weslly/Projects/notoriun/bamin/src
+	setup
+5
+d/Users/weslly/Projects/notoriun/bamin/src/setup
+	index.js
+1
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/bamin/model
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/bamin
+	command
+1
 d
 
 # Right window history (oldest to newest):
@@ -527,11 +531,9 @@ D
 :n
 :nmap
 :cabbrev
-:pwd
 :cunabbrev
 :rm -rf
 :mkdir minimap
-:touch index.js
 :rm
 :cd ~/Downloads/
 :!bat
@@ -548,6 +550,12 @@ D
 :ccl
 :mkdir helper
 :touch settings.js
+:fqt
+:pwd
+:touch customCss.js
+:mkdir setup
+:e index
+:touch index.js
 :q
 
 # Search history (oldest to newest):
@@ -562,14 +570,22 @@ D
 /awe
 /libra
 /calen
+/element-ui
+/chalk
+/varia
+/arcgis-
+/core
+/support
 
 # Prompt history (oldest to newest):
 ptags.lock
+pREADME.md
+pprint.js
 
 # Local filter history (oldest to newest):
 
 # Registers:
-""/Users/weslly/.local/share/vifm/Trash/000_helper
+""/Users/weslly/Projects/notoriun/gisgestao/server/module/service/command/util/route.js
 
 # Directory stack (oldest to newest):
 
@@ -610,6 +626,14 @@ t/Users/weslly/.local/share/vifm/Trash/000_admin
 	/Users/weslly/Projects/notoriun/sefaz-salvador/src/components/viewer/admin
 t/Users/weslly/.local/share/vifm/Trash/000_helper
 	/Users/weslly/Projects/notoriun/eleicoes/src/helper
+t/Users/weslly/.local/share/vifm/Trash/000_helper
+	/Users/weslly/Projects/notoriun/eleicoes/helper
+t/Users/weslly/.local/share/vifm/Trash/000_purified.css
+	/Users/weslly/Projects/notoriun/eleicoes/src/assets/css/purified.css
+t/Users/weslly/.local/share/vifm/Trash/000_styletest.css
+	/Users/weslly/Projects/notoriun/eleicoes/src/assets/css/styletest.css
+t/Users/weslly/.local/share/vifm/Trash/000_mesa-urna.css
+	/Users/weslly/Projects/notoriun/eleicoes/src/assets/css/mesa-urna.css
 
 # State:
 f

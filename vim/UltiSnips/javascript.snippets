@@ -1,11 +1,23 @@
 extends javascript, html
 
+snippet	fun "function ()" w
+function ${1:function_name} (${2:argument}) {
+  $3
+}
+endsnippet
+
 snippet	cl "console.log()" w
 console.log($1)
 endsnippet
 
-snippet	each ".each()" w
-each(function() {
+snippet	for "for (let i in items)" w
+for (let ${1:i} in ${2:items}) {
+  $3
+}
+endsnippet
+
+snippet	fore ".forEach()" w
+forEach((item) => {
   $1
 });
 endsnippet

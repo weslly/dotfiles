@@ -20,6 +20,8 @@
     ~/.config/alacritty: alacritty
     ~/.config/vifm: vifm
     ~/.ctags.d: ctags
+    ~/.yabairc: yabai/yabairc
+    ~/.skhdrc: yabai/skhdrc
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

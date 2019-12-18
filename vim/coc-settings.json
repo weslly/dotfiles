@@ -1,0 +1,15 @@
+{
+  "python.linting.pylintArgs": ["--load-plugins", "pylint_flask"],	
+  "coc.preferences.colorSupport": false,
+  "css.colorDecorators.enable": false,
+  "scss.colorDecorators.enable": false,
+  "vetur.format.options.tabSize": 2,
+  "vetur.format.options.useTabs": false,
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "singleQuote": true,
+      "semi": false,
+      "trailingComma": "es6"
+    }
+  }
+}

@@ -7,7 +7,6 @@ export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 export MANPAGER="nvim -c 'set ft=man' -"
 export PAGER='bat -p'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
-# export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 export is_dev=1
 export _Z_NO_COMPLETE_CD=1
 export PURE_CMD_MAX_EXEC_TIME="59"
@@ -29,7 +28,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 setopt hist_ignore_all_dups share_history append_history hist_expire_dups_first
 setopt auto_param_slash
 setopt correct
-HISTORY_IGNORE='(ls|ls *|cd|cd -|-|clear|pwd|exit|date|* --help)'
+HISTORY_IGNORE='(ls|ls *|cd|cd -|-|clear|pwd|exit|date|* --help|z *)'
 
 # Aliases
 alias vvim=/usr/local/bin/vim
@@ -38,14 +37,14 @@ alias vi=$EDITOR
 alias weechat="env TERM=screen-256color weechat"
 alias flush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias lip="ifconfig | grep 'inet ' | grep -Fv 127.0.0.1 | sed -E 's/(netmask.+)$//;s/^.*inet //'"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 alias xclip='pbcopy'
 alias xsel='pbcopy'
-alias tmx='/usr/local/bin/tmux new-session -A -s main'
+alias tmx='cd ~ && /usr/local/bin/tmux new-session -A -s main'
 alias :q='exit'
-# alias osu='mv ~/Downloads/*.osz /Applications/osu\!.app/drive_c/Program\ Files/osu\!/songs'
 alias f="vifm ."
-# unalias ls
+alias v=". venv/bin/activate"
 
 ls() {
   lsd "$@"
@@ -65,7 +64,5 @@ alias update-zsh-plugins="cd ~/dotfiles/zsh/plugins && git submodule update --re
 
 source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source ~/dotfiles/zsh/utils.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

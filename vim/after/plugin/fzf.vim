@@ -1,5 +1,5 @@
 " let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.map" --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
-let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --no-ignore-vcs --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
+let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --no-ignore-vcs --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="dist/*"  --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
 
 " let g:fzf_files_options = $FZF_CTRL_T_OPTS
 " let g:fzf_layout = { 'window': 'enew' }
@@ -42,8 +42,59 @@ command! -nargs=* Todo call fzf#run({
 \ 'down':    '50%'
 \ })
 
-function! Fzf_files_with_dev_icons()
-  let l:fzf_files_options = ' -m --preview "bat --color always --map-syntax vue:html --theme=1337 --style numbers {2..} | head -'.&lines.'"'
+" ----------------------------------------------------------------------------
+" BTags
+" ----------------------------------------------------------------------------
+function! s:align_lists(lists)
+  let maxes = {}
+  for list in a:lists
+    let i = 0
+    while i < len(list)
+      let maxes[i] = max([get(maxes, i, 0), len(list[i])])
+      let i += 1
+    endwhile
+  endfor
+  for list in a:lists
+    call map(list, "printf('%-'.maxes[v:key].'s', v:val)")
+  endfor
+  return a:lists
+endfunction
+
+function! s:btags_source()
+  let lines = map(split(system(printf(
+    \ 'ctags -f - --sort=no --excmd=pattern --language-force=%s %s',
+    \ &filetype, expand('%:S'))), "\n"), 'split(v:val, "\t")')
+  if v:shell_error
+    throw 'failed to extract tags'
+  endif
+  return map(s:align_lists(lines), 'join(v:val, "\t")')
+endfunction
+
+function! s:btags_sink(line)
+  execute split(a:line, "\t")[2]
+endfunction
+
+function! s:btags()
+  try
+    call fzf#run({'source':  s:btags_source(),
+                 \'down':    '30%',
+                 \'options': '+m -d "\t" --with-nth 1,4..',
+                 \'sink':    function('s:btags_sink')})
+  catch
+    echohl WarningMsg
+    echom v:exception
+    echohl None
+  endtry
+endfunction
+
+command! BTags call s:btags()
+
+function! Fzf_files_with_dev_icons(preview)
+  if a:preview > 0
+    let l:fzf_files_options = ' -m --preview "bat --color always --map-syntax vue:html --theme=1337 --style numbers {2..} | head -'.&lines.'"'
+  else    
+    let l:fzf_files_options = ' -m'
+  endif
 
   function! s:edit_devicon_prepended_file(items)
     let items = a:items
@@ -68,9 +119,42 @@ function! Fzf_files_with_dev_icons()
   call fzf#run(opts)
 endfunction
 
- " Open fzf Files " Open fzf Files
-map <C-p> :call Fzf_files_with_dev_icons()<CR>
-" map <C-p> :call FZFWithDevIcons()<CR>
-map <C-f> :Files<CR>
-" map <C-d> :call Fzf_git_diff_files_with_dev_icons()<CR> " :GFiles?
-" map <C-g> :call Fzf_files_with_dev_icons("git ls-files \| uniq")<CR> " :GFiles
+if has('nvim')
+  let $FZF_DEFAULT_OPTS .= ' --layout=reverse'
+
+  function! FloatingFZF()
+    let buf = nvim_create_buf(v:false, v:true)
+
+    if &columns < 90
+      let width = float2nr(&columns - (&columns * 2 / 10))
+    else
+      let width = 80
+    endif
+
+    let height = float2nr(&lines / 2)
+    let col = float2nr((&columns - width) / 2)
+
+    let opts = {
+          \ 'relative': 'editor',
+          \ 'row': 1,
+          \ 'col': col,
+          \ 'width': width,
+          \ 'height': height
+          \ }
+
+    let win = nvim_open_win(buf, v:true, opts)
+    call setwinvar(win, '&winhl', 'NormalFloat:Pmenu')
+
+    setlocal
+          \ buftype=nofile
+          \ nobuflisted
+          \ bufhidden=hide
+          \ nonumber
+          \ norelativenumber
+          \ signcolumn=no
+  endfunction
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
+
+map <C-p> :call Fzf_files_with_dev_icons(0)<CR>
+map <leader>r :BTags<CR>

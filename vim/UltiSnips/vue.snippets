@@ -1,5 +1,11 @@
 extends html, javascript, css
 
+snippet nt
+this.$nextTick(() => {
+  $1
+})
+endsnippet
+
 snippet template
 <template>
   $1
@@ -23,3 +29,53 @@ endsnippet
 snippet v-for
 v-for="($1, index) in $2" :key="index"
 endsnippet
+
+snippet components
+components: {
+  $1
+},
+endsnippet
+
+snippet methods
+methods: {
+  $1
+},
+endsnippet
+
+snippet computed
+computed: {
+  $1
+},
+endsnippet
+
+snippet created
+created () {
+  $1
+},
+endsnippet
+
+snippet mounted
+mounted () {
+  $1
+},
+endsnippet
+
+snippet data
+data () {
+  return {
+    $1
+  }
+},
+endsnippet
+
+snippet props
+props: {
+  $1
+},
+endsnippet
+
+snippet me
+$1 () {
+},
+endsnippet
+

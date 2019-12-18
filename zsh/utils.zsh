@@ -1,0 +1,13 @@
+### BREW + FZF
+# update multiple packages at once
+# mnemonic [B]rew [U]pdate [P]lugin
+
+function bip {
+  local inst=$(brew search | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[brew:install]'")
+
+  if [[ $inst ]]; then
+    for prog in $(echo $inst)
+    do brew install $prog
+    done
+  fi
+}
