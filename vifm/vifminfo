@@ -30,9 +30,6 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	assets
-1
 d/Users/weslly/Projects/notoriun/eleicoes/src/assets
 	css
 1
@@ -330,6 +327,9 @@ d/Users/weslly/Projects/notoriun/gisgestao/server/module/bamin/model
 d/Users/weslly/Projects/notoriun/gisgestao/server/module/bamin
 	command
 1
+d/Users/weslly/dotfiles/vim
+	..
+0
 d
 
 # Right window history (oldest to newest):

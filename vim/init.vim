@@ -66,7 +66,7 @@ set nowritebackup
 
 set updatetime=300
 set signcolumn=yes
-set cursorline
+set nocursorline
 
 set undodir=/tmp/
 set backupdir=~/.local/share/nvim/backup
@@ -109,71 +109,51 @@ Plug 'roxma/nvim-yarp'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'kana/vim-textobj-user'
+Plug 'akiyan/vim-textobj-php'
+Plug 'whatyouhide/vim-textobj-xmlattr'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-abolish'
-Plug 'bronson/vim-visual-star-search'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
+Plug 'bronson/vim-visual-star-search'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'vimwiki/vimwiki'
-
-" NCM 2
-" Plug 'ncm2/ncm2'
-" Plug 'ncm2/ncm2-ultisnips'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-jedi'
-" Plug 'ncm2/ncm2-tagprefix'
-" Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
-" Plug 'ncm2/ncm2-html-subscope'
-" Plug 'ncm2/ncm2-abbrfuzzy'
-" Plug 'ncm2/ncm2-cssomni'
-" autocmd BufEnter * call ncm2#enable_for_buffer()
-
-Plug 'neoclide/coc.nvim', {'tag': '*'}
-
-Plug 'majutsushi/tagbar'
-
-
-Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'morhetz/gruvbox'
-Plug 'w0rp/ale'
-
-Plug 'itchyny/lightline.vim'
-
-Plug 'akiyan/vim-textobj-php'
-Plug 'whatyouhide/vim-textobj-xmlattr'
 
 Plug 'posva/vim-vue'
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'vifm/vifm.vim'
-Plug 'godlygeek/tabular'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'leafgarland/typescript-vim'
-" Plug 'semanticart/tag-peek.vim'
+Plug 'heavenshell/vim-jsdoc'
+
 Plug 'rhysd/git-messenger.vim'
-Plug 'brooth/far.vim'
-Plug 'norcalli/nvim-colorizer.lua'
+Plug 'KabbAmine/vCoolor.vim'
+Plug 'taigacute/gruvbox9'
+Plug 'itchyny/lightline.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
+Plug 'vifm/vifm.vim'
+Plug 'neoclide/coc.nvim', {'tag': '*'}
+Plug 'vimwiki/vimwiki'
+" Plug 'w0rp/ale'
+" Plug 'majutsushi/tagbar'
+" Plug 'morhetz/gruvbox'
+" Plug 'brooth/far.vim'
+" Plug 'godlygeek/tabular'
+" Plug 'semanticart/tag-peek.vim'
+" Plug 'norcalli/nvim-colorizer.lua'
 " Plug 'andymass/vim-matchup'
 " Plug 'kizza/actionmenu.nvim'
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-Plug 'taigacute/gruvbox9'
-Plug 'Yggdroot/indentLine'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'arcticicestudio/nord-vim'
-Plug 'jacoborus/tender.vim'
-Plug 'sonph/onehalf'
-Plug 'elzr/vim-json', { 'for': ['json'] }
+" Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+" Plug 'Yggdroot/indentLine'
 call plug#end()
 " }}}
 
@@ -181,7 +161,11 @@ call plug#end()
 set background=dark
 " let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italic=1
-let g:gruvbox_transp_bg = 1
+if has('gui')
+  let g:gruvbox_transp_bg = 0
+else
+  let g:gruvbox_transp_bg = 1
+endif
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_italicize_strings = 0
 let g:gruvbox_plugin_hi_groups = 1
@@ -193,6 +177,7 @@ colorscheme gruvbox9_hard
 let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3
+
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 let g:AutoPairsMultilineClose = 0
@@ -205,12 +190,15 @@ let g:jsdoc_underscore_private = 1
 
 " let /:matchup_matchparen_deferred = 1
 
-let g:ale_enabled = 0 
 let g:UltsSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 
 let g:vue_pre_processors = ['sass', 'scss']
+
+let g:vcoolor_lowercase = 1
+let g:vcoolor_disable_mappings = 1
+let g:vcoolor_map = '<leader>\'
 
 " ctagsargs taken from tagbar.vim and modified to support roles.
 let g:tagbar_type_vue = {
@@ -235,10 +223,9 @@ map <leader>c <c-_><c-_>
 inoremap jj <esc>
 inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent> <leader>l :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-" noremap <C-p> :Files<cr>
 nnoremap <silent> <leader><leader> :Files<cr>
 nnoremap <leader>o :Buffers<CR>
-nnoremap <leader>q :call tag_peek#ShowTag()<CR>
+" nnoremap <leader>q :call tag_peek#ShowTag()<CR>
 nnoremap <F3> :vnew<cr>:setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile noundofile<cr>
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
@@ -254,13 +241,10 @@ inoremap , ,<c-g>u
 
 vnoremap <leader>g y:grep "<c-r>"" <CR>
 
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <silent> <leader>[ :ccl<cr>
 nmap <silent> <leader>d :JsDoc<cr>
 
 nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>h :TagbarToggle<CR>
 nnoremap <leader>z :ccl<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
@@ -314,23 +298,6 @@ augroup END
 "     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
 "   endif
 " augroup END
-
-
-let s:code_actions = []
-let g:vim_json_syntax_conceal = 0
-
-func! ActionMenuCodeActions() abort
-  let s:code_actions = CocAction('codeActions')
-  let l:menu_items = map(copy(s:code_actions), { index, item -> item['title'] })
-  call actionmenu#open(l:menu_items, 'ActionMenuCodeActionsCallback')
-endfunc
-
-func! ActionMenuCodeActionsCallback(index, item) abort
-  if a:index >= 0
-    let l:selected_code_action = s:code_actions[a:index]
-    let l:response = CocAction('doCodeAction', l:selected_code_action)
-  endif
-endfunc
 
 " Project specific override {{{
 let s:vimrc_project = $PWD . '/.local.vim'
