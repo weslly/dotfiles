@@ -1,5 +1,7 @@
 {
   "python.linting.pylintArgs": ["--load-plugins", "pylint_flask"],	
+  "suggest.enablePreview": true,
+  "diagnostic.messageTarget": "echo",
   "coc.preferences.colorSupport": false,
   "css.colorDecorators.enable": false,
   "scss.colorDecorators.enable": false,

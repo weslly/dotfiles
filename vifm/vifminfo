@@ -30,99 +30,6 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/Users/weslly/Projects/notoriun/eleicoes/src/assets
-	css
-1
-d/Users/weslly/Projects/notoriun/eleicoes/src/assets/css
-	custom.scss
-2
-d/Users/weslly
-	Music
-8
-d/Users/weslly/Projects/notoriun/eleicoes
-	dist
-3
-d/Users/weslly/Projects/notoriun/eleicoes/dist
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes
-	..
-0
-d/Users/weslly/Projects/notoriun
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src/components/global
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src/components
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	pluggables
-3
-d/Users/weslly/Projects/notoriun/eleicoes/src/pluggables
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	components
-2
-d/Users/weslly/Projects/notoriun/eleicoes/src/components
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	assets
-1
-d/Users/weslly/Projects/notoriun/eleicoes/src/assets
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	utils
-6
-d/Users/weslly/Projects/notoriun/eleicoes/src/utils
-	..
-0
-d/Users/weslly/Projects/notoriun/eleicoes/src
-	utils
-6
-d/Users/weslly/Projects/notoriun/eleicoes/src/utils
-	customCss.js
-1
-d/Users/weslly
-	Dropbox
-5
-d/Users/weslly/Dropbox
-	Photos
-16
-d/Users/weslly/Dropbox/Photos
-	wallpapers
-3
-d/Users/weslly/Dropbox/Photos/wallpapers
-	APPOWS4.jpg
-10
-d/Users/weslly
-	Dropbox
-5
-d/Users/weslly/Dropbox
-	Photos
-16
-d/Users/weslly/Dropbox/Photos
-	wallpapers
-3
-d/Users/weslly/Dropbox/Photos/wallpapers
-	APPOWS6.jpg
-12
-d/Users/weslly
-	Dropbox
-5
-d/Users/weslly/Dropbox
-	Photos
-16
-d/Users/weslly/Dropbox/Photos
-	wallpapers
-3
-d/Users/weslly/Dropbox/Photos/wallpapers
-	Appows_2.jpg
-25
 d/Users/weslly
 	Dropbox
 5
@@ -330,6 +237,99 @@ d/Users/weslly/Projects/notoriun/gisgestao/server/module/bamin
 d/Users/weslly/dotfiles/vim
 	..
 0
+d/usr/local/etc/php
+	7.3
+4
+d/usr/local/etc/php/7.3
+	..
+0
+d/usr/local/etc/php
+	7.3
+4
+d/usr/local/etc/php/7.3
+	..
+0
+d/usr/local/etc/php
+	7.4
+5
+d/usr/local/etc/php/7.4
+	..
+0
+d/usr/local/etc/php
+	7.3
+4
+d/usr/local/etc/php/7.3
+	php.ini
+7
+d/Users/weslly/Projects/notoriun/gisgestao
+	public
+7
+d/Users/weslly/Projects/notoriun/gisgestao/public
+	lib
+7
+d/Users/weslly/Projects/notoriun/gisgestao/public/lib
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/public
+	util
+10
+d/Users/weslly/Projects/notoriun/gisgestao/public/util
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/public
+	lib
+7
+d/Users/weslly/Projects/notoriun/gisgestao/public/lib
+	..
+0
+d/Users/weslly/Projects/notoriun/gisgestao/public
+	lib
+7
+d/Users/weslly/Projects/notoriun/gisgestao/public/lib
+	vue.js
+26
+d/Users/weslly/Projects/notoriun/gisgestao/server
+	util
+16
+d/Users/weslly/Projects/notoriun/gisgestao/server/util
+	proj4.js
+7
+d/Users/weslly/Projects/notoriun/sefaz-salvador/build
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-salvador
+	..
+0
+d/Users/weslly/Projects/notoriun
+	sefaz-salvador
+9
+d/Users/weslly/Projects/notoriun/sefaz-salvador
+	src
+7
+d/Users/weslly/Projects/notoriun/sefaz-salvador/src
+	..
+0
+d/Users/weslly/Projects/notoriun/sefaz-salvador
+	src
+7
+d/Users/weslly/Projects/advocacia/server
+	models
+10
+d/Users/weslly/Projects/advocacia/server/models
+	departamento.js
+9
+d/Users/weslly/Projects/notoriun/gisgestao
+	server
+9
+d/Users/weslly/Projects/notoriun/gisgestao/server
+	module
+12
+d/Users/weslly/Projects/notoriun/gisgestao/server/module
+	slu
+7
+d/Users/weslly/Projects/notoriun/gisgestao/server/module/slu
+	config.js
+9
 d
 
 # Right window history (oldest to newest):
@@ -556,6 +556,7 @@ D
 :mkdir setup
 :e index
 :touch index.js
+:rename
 :q
 
 # Search history (oldest to newest):
@@ -576,16 +577,19 @@ D
 /arcgis-
 /core
 /support
+/server
+/modu
 
 # Prompt history (oldest to newest):
 ptags.lock
 pREADME.md
 pprint.js
+pconfig.js
 
 # Local filter history (oldest to newest):
 
 # Registers:
-""/Users/weslly/Projects/notoriun/gisgestao/server/module/service/command/util/route.js
+""/Users/weslly/Projects/notoriun/gisgestao/server/module/slu/index.js
 
 # Directory stack (oldest to newest):
 

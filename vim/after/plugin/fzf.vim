@@ -125,10 +125,10 @@ if has('nvim')
   function! FloatingFZF()
     let buf = nvim_create_buf(v:false, v:true)
 
-    if &columns < 90
+    if &columns < 140
       let width = float2nr(&columns - (&columns * 2 / 10))
     else
-      let width = 80
+      let width = 140
     endif
 
     let height = float2nr(&lines / 2)

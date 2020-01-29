@@ -1,3 +1,7 @@
+if !filereadable(expand('/Users/weslly/.nvm/versions/node/v12.14.1/bin/node'))
+  let g:coc_node_path = '/Users/weslly/.nvm/versions/node/v12.14.1/bin/node'
+endif
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " inoremap <silent><expr> <TAB>
@@ -19,8 +23,8 @@ inoremap <silent><expr> <c-\> coc#refresh()
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> [c <Plug>(coc-diagnostic-prev-error)
+nmap <silent> ]c <Plug>(coc-diagnostic-next-error)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)

@@ -39,7 +39,7 @@ set scroll=5 " number of lines to scroll with ctrl-d/u
 set synmaxcol=1500
 set shortmess+=c
 set pumheight=10 " autocomplete max height
-set lazyredraw
+" set lazyredraw
 set laststatus=2
 set splitbelow
 set splitright
@@ -82,7 +82,8 @@ if executable('rg')
 endif
 
 if has('folding')
-  set foldmethod=indent
+  set foldmethod=syntax
+  set nofoldenable
   set foldlevelstart=999
 endif
 
@@ -107,7 +108,7 @@ endif
 Plug 'roxma/nvim-yarp'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " after/plugin/fzf.vim
 Plug 'kana/vim-textobj-user'
 Plug 'akiyan/vim-textobj-php'
 Plug 'whatyouhide/vim-textobj-xmlattr'
@@ -119,7 +120,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'bronson/vim-visual-star-search'
-Plug 'editorconfig/editorconfig-vim'
+Plug 'editorconfig/editorconfig-vim' " after/plugin/editorconfig.vim
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/targets.vim'
 Plug 'tomtom/tcomment_vim'
@@ -131,90 +132,55 @@ Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'leafgarland/typescript-vim'
-Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc' " after/plugin/jsdoc.vim
 
+Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/git-messenger.vim'
-Plug 'KabbAmine/vCoolor.vim'
+Plug 'KabbAmine/vCoolor.vim' " after/plugin/vcoolor.vim
 Plug 'taigacute/gruvbox9'
-Plug 'itchyny/lightline.vim'
-Plug 'SirVer/ultisnips'
+Plug 'itchyny/lightline.vim' " after/plugin/lightline.vim
+Plug 'SirVer/ultisnips' " after/plugin/UltiSnips.vim
 Plug 'honza/vim-snippets'
-Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
 Plug 'vifm/vifm.vim'
-Plug 'neoclide/coc.nvim', {'tag': '*'}
+Plug 'neoclide/coc.nvim', {'tag': '*'} " after/plugin/coc.vim
 Plug 'vimwiki/vimwiki'
-" Plug 'w0rp/ale'
-" Plug 'majutsushi/tagbar'
-" Plug 'morhetz/gruvbox'
-" Plug 'brooth/far.vim'
+Plug 'w0rp/ale' " after/plugin/ale.vim
+Plug 'semanticart/tag-peek.vim'
+Plug 'jesseleite/vim-agriculture'
+Plug 'brooth/far.vim'
+Plug 'AndrewRadev/switch.vim'
+Plug 'morhetz/gruvbox'
+Plug 'ayu-theme/ayu-vim'
+Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
 " Plug 'godlygeek/tabular'
-" Plug 'semanticart/tag-peek.vim'
 " Plug 'norcalli/nvim-colorizer.lua'
 " Plug 'andymass/vim-matchup'
 " Plug 'kizza/actionmenu.nvim'
 " Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 " Plug 'Yggdroot/indentLine'
+" Plug 'NLKNguyen/papercolor-theme'
 call plug#end()
 " }}}
 
 " Colorscheme
+" Gruvbox
 set background=dark
-" let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italic=1
-if has('gui')
-  let g:gruvbox_transp_bg = 0
-else
-  let g:gruvbox_transp_bg = 1
-endif
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_italicize_strings = 0
-let g:gruvbox_plugin_hi_groups = 1
-" colorscheme gruvbox
+" let g:gruvbox_plugin_hi_groups = 1
 colorscheme gruvbox9_hard
-" colorscheme tender
+
+let g:matchparen_timeout = 2
+let g:matchparen_insert_timeout = 2
 
 " Plugin config
-let g:netrw_list_hide='.git,*.pyc,.DS_Store,__pycache__'
-let g:netrw_winsize = -28
-let g:netrw_liststyle = 3
-
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 let g:AutoPairsMultilineClose = 0
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
-
-let g:javascript_plugin_jsdoc = 1
-let g:jsdoc_enable_es6 = 1
-let g:jsdoc_allow_input_prompt = 1
-let g:jsdoc_underscore_private = 1
-
-" let /:matchup_matchparen_deferred = 1
-
-let g:UltsSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<c-b>'
-let g:UltiSnipsJumpBackwardTrigger='<c-z>'
-
 let g:vue_pre_processors = ['sass', 'scss']
-
-let g:vcoolor_lowercase = 1
-let g:vcoolor_disable_mappings = 1
-let g:vcoolor_map = '<leader>\'
-
-" ctagsargs taken from tagbar.vim and modified to support roles.
-let g:tagbar_type_vue = {
-  \'ctagsbin': '/usr/local/bin/ctags',
-  \'ctagstype': 'JavaScript',
-  \'kinds': [
-  \ 'f:functions',
-  \ 'm:methods',
-  \ 'c:constants:1',
-  \ 'v:global variables',
-  \ 'g:generators',
-  \ 'G:getters',
-  \ 'S:setters'
-  \],
-  \'sro': '.'
-\}
 
 " (Re)maps
 noremap Q @q
@@ -240,9 +206,9 @@ inoremap ! !<c-g>u
 inoremap , ,<c-g>u
 
 vnoremap <leader>g y:grep "<c-r>"" <CR>
+nnoremap <leader>q :call tag_peek#ShowTag()<CR>
 
 nmap <silent> <leader>[ :ccl<cr>
-nmap <silent> <leader>d :JsDoc<cr>
 
 nnoremap <leader>gd :Gvdiff<CR>
 nnoremap <leader>z :ccl<CR>
@@ -288,16 +254,16 @@ augroup vimrcEx
 augroup END
 
 " Change background color for active window
-" augroup customHighlights
-"   autocmd!
-"   if !has('gui') && !has('gui_vimr')
-" "     hi Normal guibg=NONE ctermbg=NONE
+augroup customHighlights
+  autocmd!
+  if !has('gui') && !has('gui_vimr')
+    hi Normal guibg=NONE ctermbg=NONE
 " "     hi SignColumn guibg=NONE ctermbg=NONE
 "     hi ActiveWindow guibg=#1D2021
 "     hi InactiveWindow guibg=#282828
 "     set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-"   endif
-" augroup END
+  endif
+augroup END
 
 " Project specific override {{{
 let s:vimrc_project = $PWD . '/.local.vim'
@@ -306,17 +272,6 @@ if filereadable(s:vimrc_project)
 endif
 " }}}
 
-function! LightlineFilename()
-  return &filetype ==# 'fzf' ? 'FZF' :
-        \ expand('%:F') !=# '' ? expand('%:F') : '[No Name]'
-endfunction
-
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ 'colorscheme': 'gruvbox9'
-      \ }
 " Other files {{{
 " plugin/autosession.vim  " Auto-Session Plugin
 " after/plugin            " Plugin Settings
