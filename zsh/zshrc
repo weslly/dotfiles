@@ -1,3 +1,7 @@
+if [[ "$ZPROF" = true ]]; then
+  zmodload zsh/zprof
+fi
+
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 export LANG=en_US.UTF-8
@@ -12,6 +16,7 @@ export _Z_NO_COMPLETE_CD=1
 export PURE_CMD_MAX_EXEC_TIME="59"
 export HOMEBREW_NO_ANALYTICS=1
 export NVM_LAZY_LOAD=true
+# export NVM_NO_USE=true
 export _ZL_NO_CHECK=1
 
 # zmodload zsh/zprof
@@ -46,9 +51,9 @@ alias :q='exit'
 alias f="vifm ."
 alias v=". venv/bin/activate"
 
-ls() {
-  lsd "$@"
-}
+# ls() {
+#   lsd "$@"
+# }
 
 # Keys
 bindkey '^P' fzf-cd-widget
@@ -66,3 +71,20 @@ source ~/.zsh-plugins/z.lua/z.lua.plugin.zsh
 source ~/.zsh-plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 source ~/dotfiles/zsh/utils.zsh
 source ~/.zsh-plugins/zsh-nvm/zsh-nvm.plugin.zsh
+profzsh() {
+  shell=${1-$SHELL}
+  ZPROF=true $shell -i -c exit
+}
+
+if [[ "$ZPROF" = true ]]; then
+  zprof
+fi
+
+###-tns-completion-start-###
+if [ -f /Users/weslly/.tnsrc ]; then 
+    source /Users/weslly/.tnsrc 
+fi
+###-tns-completion-end-###
+export PATH="/usr/local/opt/llvm@8/bin:$PATH"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"

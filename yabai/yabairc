@@ -18,7 +18,7 @@ yabai -m config window_topmost               off
 yabai -m config window_opacity               off
 yabai -m config window_shadow                on
 yabai -m config window_border                off
-yabai -m config window_border_width          3
+yabai -m config window_border_width          4
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff505050
 yabai -m config insert_window_border_color   0xffd75f5f
@@ -36,7 +36,7 @@ yabai -m config top_padding                  0
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config right_padding                0
-yabai -m config window_gap                   0
+yabai -m config window_gap                   5
 
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="Preferences$" manage=off
@@ -59,6 +59,7 @@ yabai -m rule --add title="^Open$" manage=off
 
 # Picture in picture rules
 # yabai -m rule --add app="Firefox Developer Edition" title="^$" sticky=on
+yabai -m rule --add title="Picture-in-Picture" manage=off
 yabai -m rule --add title="Picture-in-Picture" sticky=on
 yabai -m rule --add title="Picture in Picture" manage=off
 

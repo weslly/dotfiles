@@ -39,7 +39,7 @@ set scroll=5 " number of lines to scroll with ctrl-d/u
 set synmaxcol=1500
 set shortmess+=c
 set pumheight=10 " autocomplete max height
-" set lazyredraw
+set lazyredraw
 set laststatus=2
 set splitbelow
 set splitright
@@ -66,7 +66,8 @@ set nowritebackup
 
 set updatetime=300
 set signcolumn=yes
-set nocursorline
+" set nocursorline
+set cursorline
 
 set undodir=/tmp/
 set backupdir=~/.local/share/nvim/backup
@@ -82,7 +83,7 @@ if executable('rg')
 endif
 
 if has('folding')
-  set foldmethod=syntax
+  set foldmethod=indent
   set nofoldenable
   set foldlevelstart=999
 endif
@@ -99,6 +100,8 @@ if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
   silent !mkdir -p ~/.config/nvim/autoload/
   silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 endif
+
+let g:ale_disable_lsp = 1 
 
 " Vim-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
@@ -132,33 +135,47 @@ Plug 'pangloss/vim-javascript'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'leafgarland/typescript-vim'
-Plug 'heavenshell/vim-jsdoc' " after/plugin/jsdoc.vim
+Plug 'keith/swift.vim'
 
-Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/git-messenger.vim'
-Plug 'KabbAmine/vCoolor.vim' " after/plugin/vcoolor.vim
-Plug 'taigacute/gruvbox9'
-Plug 'itchyny/lightline.vim' " after/plugin/lightline.vim
+" Plug 'lifepillar/vim-gruvbox8'
 Plug 'SirVer/ultisnips' " after/plugin/UltiSnips.vim
+" Plug 'udalov/kotlin-vim'
 Plug 'honza/vim-snippets'
-Plug 'vifm/vifm.vim'
-Plug 'neoclide/coc.nvim', {'tag': '*'} " after/plugin/coc.vim
+" Plug 'vifm/vifm.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " after/plugin/coc.vim
 Plug 'vimwiki/vimwiki'
 Plug 'w0rp/ale' " after/plugin/ale.vim
-Plug 'semanticart/tag-peek.vim'
-Plug 'jesseleite/vim-agriculture'
-Plug 'brooth/far.vim'
 Plug 'AndrewRadev/switch.vim'
-Plug 'morhetz/gruvbox'
-Plug 'ayu-theme/ayu-vim'
 Plug 'mattn/emmet-vim', { 'for': ['less', 'scss', 'css', 'html.php', 'html', 'htmldjango', 'jinja.html', 'jinja', 'jinja2', 'twig', 'javascript.jsx', 'php', 'vue'] }
+Plug 'itchyny/lightline.vim' " after/plugin/lightline.vim
+" Plug 'maximbaz/lightline-ale'
+" Plug 'josa42/vim-lightline-coc'
+Plug 'KabbAmine/vCoolor.vim' " after/plugin/vcoolor.vim
+" Plug 'Yggdroot/indentLine'
+" Plug 'airblade/vim-gitgutter' " after/plugin/gitgutter.vim
+" Plug 'brooth/far.vim'
+Plug 'morhetz/gruvbox'
+" Plug 'ayu-theme/ayu-vim'
+Plug 'heavenshell/vim-jsdoc', { 
+  \ 'for': ['javascript', 'javascript.jsx','typescript'], 
+  \ 'do': 'make install'
+\} " after/plugin/jsdoc.vim
+Plug 'semanticart/tag-peek.vim'
+" Plug 'jesseleite/vim-agriculture'
 " Plug 'godlygeek/tabular'
 " Plug 'norcalli/nvim-colorizer.lua'
 " Plug 'andymass/vim-matchup'
-" Plug 'kizza/actionmenu.nvim'
 " Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-" Plug 'Yggdroot/indentLine'
-" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'preservim/tagbar'
+Plug 'liuchengxu/vista.vim'
+
+" Plug 'glepnir/spaceline.vim'
+" " Use the icon plugin for better behavior
+" Plug 'kyazdani42/nvim-web-devicons'
+" if !has('nvim')
+"   Plug 'ryanoasis/vim-devicons' 
+" endif
 call plug#end()
 " }}}
 
@@ -169,16 +186,26 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_italic=1
 let g:gruvbox_filetype_hi_groups = 1
 let g:gruvbox_italicize_strings = 0
-" let g:gruvbox_plugin_hi_groups = 1
-colorscheme gruvbox9_hard
+let g:gruvbox_plugin_hi_groups = 1
+colorscheme gruvbox
 
 let g:matchparen_timeout = 2
 let g:matchparen_insert_timeout = 2
 
+let g:vista_executive_for = {
+  \ 'js': 'coc',
+  \ 'ts': 'coc',
+  \ }
+
+let g:vista_default_executive = 'coc'
+let g:vista_ignore_kinds = ['Variable', 'Property', 'Function']
+
 " Plugin config
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki'}]
+let g:vimwiki_hl_cb_checked = 1
 let g:markdown_fenced_languages = ['html', 'vim', 'ruby', 'python', 'bash=sh', 'javascript']
 let g:AutoPairsMultilineClose = 0
+let g:AutoPairsMapSpace = 0
 let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
 let g:vue_pre_processors = ['sass', 'scss']
 
@@ -208,6 +235,9 @@ inoremap , ,<c-g>u
 vnoremap <leader>g y:grep "<c-r>"" <CR>
 nnoremap <leader>q :call tag_peek#ShowTag()<CR>
 
+vnoremap <silent> <leader>\ :VCoolor<CR>
+nnoremap <silent> <leader>\ :VCoolor<CR>
+
 nmap <silent> <leader>[ :ccl<cr>
 
 nnoremap <leader>gd :Gvdiff<CR>
@@ -221,12 +251,17 @@ command! Reveal :silent exec "!open -R %"
 command! ProfileStart :call functions#StartProfile()
 command! ProfileEnd :call functions#EndProfile()
 
+noremap <Leader>y "*y
+noremap <Leader>p "*p
+noremap <Leader>Y "+y
+noremap <Leader>P "+p
+
 " Custom AutoCmds {{{
 augroup vimrcEx
   autocmd!
 
   " Strip trailing whitespace on save
-  autocmd FileType python,php,vue,javascript,html autocmd BufWritePre <buffer> %s/\s\+$//e
+  autocmd FileType python,php,vue,javascript,html,css autocmd BufWritePre <buffer> %s/\s\+$//e
 
   " Automatically equalize splits when Vim is resized
   autocmd VimResized * wincmd =

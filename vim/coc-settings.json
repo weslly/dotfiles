@@ -1,10 +1,12 @@
 {
   "python.linting.pylintArgs": ["--load-plugins", "pylint_flask"],	
   "suggest.enablePreview": true,
+"diagnostic.displayByAle": true,
   "diagnostic.messageTarget": "echo",
   "coc.preferences.colorSupport": false,
   "css.colorDecorators.enable": false,
   "scss.colorDecorators.enable": false,
+  "vetur.format.enable": true,
   "vetur.format.options.tabSize": 2,
   "vetur.format.options.useTabs": false,
   "vetur.format.defaultFormatterOptions": {

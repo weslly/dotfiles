@@ -6,6 +6,24 @@ function ${1:function_name} (${2:argument}) {
 }
 endsnippet
 
+snippet	pro "new Promise()" w
+new Promise((resolve, reject) => {
+  $1
+})
+endsnippet
+
+snippet	then ".then(() => {})" w
+then(($1) => {
+  $2
+})
+endsnippet
+
+snippet	catch ".catch(() => {})" w
+catch(error => {
+  $1
+})
+endsnippet
+
 snippet	cl "console.log()" w
 console.log($1)
 endsnippet
@@ -22,8 +40,12 @@ forEach((item) => {
 });
 endsnippet
 
-snippet	ready "jQuery .ready()"
-jQuery(document).ready(function($) {
-  $1
-});
+# Lodash
+snippet	lget "_.get()" w
+${1:_}.get($2, '$3')
 endsnippet
+
+snippet	lo "_. (Lodash)" w
+_.$1
+endsnippet
+

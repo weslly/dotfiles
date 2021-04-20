@@ -1,5 +1,6 @@
 " let $FZF_DEFAULT_COMMAND= 'ag --ignore="*.map" --ignore="*.pyc" --ignore="*.png" --ignore="*.jpg" --ignore="*.gif" --ignore="bower_components/*" --ignore="fonts/*" -g ""'
-let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --no-ignore-vcs --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="dist/*"  --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
+let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="dist/*"  --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
+" let $FZF_DEFAULT_COMMAND= 'fd --hidden --follow --no-ignore-vcs --exclude=".DS_Store" --exclude="*.map" --exclude="*.pyc" --exclude="*.png" --exclude="*.jpg" --exclude="*.gif" --exclude="dist/*"  --exclude="bower_components/*" --exclude="fonts/*"  --exclude ".git/*" --exclude "node_modules/*" --type f'
 
 " let g:fzf_files_options = $FZF_CTRL_T_OPTS
 " let g:fzf_layout = { 'window': 'enew' }
@@ -157,4 +158,4 @@ if has('nvim')
 endif
 
 map <C-p> :call Fzf_files_with_dev_icons(0)<CR>
-map <leader>r :BTags<CR>
+" map <leader>r :BTags<CR>

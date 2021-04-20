@@ -2,6 +2,8 @@
 .DS_Store
 patch.diff
 profile.log
+.session.vim
+.local.vim
 .ignore
 .idea/dataSources
 project/static/admin/.sass-cache

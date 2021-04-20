@@ -3,4 +3,4 @@ let b:ale_linter_aliases = ['javascript', 'vue']
 " Select the eslint and vls linters.
 let b:ale_linters = ['eslint', 'vls']
 
-nnoremap <silent> <leader>= :!npx eslint % --fix<CR>
+" nnoremap <silent> <leader>= :!npx eslint % --fix<CR>

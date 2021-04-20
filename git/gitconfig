@@ -57,3 +57,5 @@
 	email = weslly.honorato@gmail.com
 [gpg]
 	program = gpg
+[pull]
+	ff = only

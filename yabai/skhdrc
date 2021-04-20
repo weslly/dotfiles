@@ -85,8 +85,8 @@ shift + cmd - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 # send window to monitor and follow focus
 # ctrl + cmd - x  : yabai -m window --display recent; yabai -m display --focus recent
-ctrl + alt + cmd - left  : ~/dotfiles/bin/yabai_display.sh prev
-ctrl + alt + cmd - right  : ~/dotfiles/bin/yabai_display.sh next
+ctrl + alt + cmd - left  : ~/dotfiles/bin/yabai_display.sh next
+ctrl + alt + cmd - right  : ~/dotfiles/bin/yabai_display.sh prev
 
 # ctrl + alt + cmd - left  : yabai -m window --display prev; yabai -m display --focus prev
 # ctrl + alt + cmd - right  : yabai -m window --display next; yabai -m display --focus next

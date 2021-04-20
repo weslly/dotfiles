@@ -27,12 +27,11 @@
 --exclude=\*.dll
 --exclude=\*.pdb
 --exclude=tags
+--exclude=public
 --exclude=cscope.\*
 --exclude=\*.tar.\*
-
+--exclude=.git
 
 -f tags
 --recurse=yes
---exclude=.git
 --extras=+g
-
